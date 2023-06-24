@@ -1,0 +1,24 @@
+.home-page-container{
+    display: flex;
+    
+}
+.item-home{
+     flex: 1.75;
+  background-color: lightblue;
+  text-align: center;
+  padding: 20px;
+}
+
+.item-right{
+flex: 0.75;
+  background-color: red;
+  text-align: center;
+  padding: 20px;
+}
+
+.item-left{
+     flex: 0.5;
+  background-color: red;
+  text-align: center;
+  padding: 20px;
+}

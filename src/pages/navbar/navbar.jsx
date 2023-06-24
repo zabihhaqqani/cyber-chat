@@ -4,18 +4,22 @@ import "./navbar.css"
 function Navbar() {
   return (
     <div>
-    <div className="navbar-container">
-      <div>
-        <h3 className='logo-name'>CyberChat</h3>
+      <div className="navbar-container">
+        <div>
+          <h3 className="logo-name">CyberChat</h3>
+        </div>
+        <div>
+          <input
+            placeholder="Search User"
+            className="search-user"
+            type="text"
+          />
+        </div>
+        <div>
+          <i className="fa-solid fa-circle-user fa-xl"></i>{" "}
+        </div>
       </div>
-      <div>
-        <input placeholder='Search User' className='search-user' type="text" />
-      </div>
-      <div>
-        <i class="fa-solid fa-circle-user fa-xl"></i>{" "}
-      </div>
-    </div>
-    <hr />
+      <hr />
     </div>
   );
 }
