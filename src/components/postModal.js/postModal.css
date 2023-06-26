@@ -1,0 +1,25 @@
+.text-area{
+    margin: 0rem 1rem 0rem 1rem;
+    padding: 0.5rem;
+    border: none;
+    outline: none;
+    resize: none;
+}
+.post-container{
+    display: flex;
+    justify-content: space-around;
+}
+.post-btn{
+    padding: 0.5rem;
+    border: none;
+    background-color: black;
+    color: white;
+    text-align: right;
+}
+
+.post-btn:hover{
+    cursor: pointer;
+}
+.image{
+    border: none;
+}

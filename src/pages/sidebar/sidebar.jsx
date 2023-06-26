@@ -1,14 +1,16 @@
 import React from 'react'
 import "./sidebar.css"
+import { useNavigate } from 'react-router-dom';
 
 function SideBar() {
+  const navigate = useNavigate()
   return (
     <div className="sidebar-container item-left">
       <ul className="sidebar-items">
-        <li>
+        <li onClick={() => navigate("/")}>
           <i className="fa-solid fa-house fa-lg"></i>Home
         </li>
-        <li>
+        <li onClick={() => navigate("/explore")}>
           {" "}
           <i className="fa-solid fa-compass fa-lg"></i>Explore
         </li>
@@ -19,7 +21,6 @@ function SideBar() {
           {" "}
           <i className="fa-solid fa-heart fa-lg"></i>Liked Posts
         </li>
-        <div className="vl"></div>
       </ul>
     </div>
   );

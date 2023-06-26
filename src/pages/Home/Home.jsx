@@ -5,8 +5,9 @@ import MainPage from "../main/main";
 import RightSideBar from "../rightSideBar/rightSideBar";
 import "./home.css"
 
+
 function HomePage() {
-  return (
+ return (
     <div>
       <Navbar />
       <div className="home-page-container">

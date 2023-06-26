@@ -8,7 +8,7 @@
 .sidebar-items li{
     margin:1rem;
     list-style-type: none;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 40px;
     display: flex;
     padding: 0.5rem;
@@ -22,24 +22,8 @@
 
 }
 .sidebar-items li:hover{
-    background-color: rgb(255, 255, 255);
+    background-color: whitesmoke;
     cursor: pointer;
+    transition: 0.25s;
     /* padding: 1rem; */
-}
-.vl{
-    border-left: 6px solid black;
-  height: 100%;
-  position: absolute;
-  left: 350px;
-  margin-left: -80px;
-  top: 0;
-}
-
-.vl-right{
-      border-left: 6px solid black;
-  height: 100%;
-  position: absolute;
-  right: 350px;
-  margin-left: -80px;
-  top: 0;
 }

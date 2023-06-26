@@ -1,11 +1,13 @@
-import React from 'react'
-import "./navbar.css"
+import React from "react";
+import "./navbar.css";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="navbar-container">
-        <div>
+        <div onClick={() => navigate("/")}>
           <h3 className="logo-name">CyberChat</h3>
         </div>
         <div>
@@ -19,9 +21,8 @@ function Navbar() {
           <i className="fa-solid fa-circle-user fa-xl"></i>{" "}
         </div>
       </div>
-      <hr />
     </div>
   );
 }
 
-export default Navbar
+export default Navbar;
