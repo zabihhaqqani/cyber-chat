@@ -14,7 +14,7 @@ function SideBar() {
           {" "}
           <i className="fa-solid fa-compass fa-lg"></i>Explore
         </li>
-        <li>
+        <li onClick={() => navigate("/bookmarks")}>
           <i className="fa-solid fa-bookmark fa-lg"></i>BookMarks
         </li>
         <li>

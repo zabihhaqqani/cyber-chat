@@ -1,22 +1,23 @@
-import React from 'react'
-
 const dataReducer = (state,action) => {
-  switch(action.type){
-
+  switch (action.type) {
     case "GET_ALL_USER_POSTS":
       return {
         ...state,
-        posts:action.payload
-      }
-      case "CREATE_NEW_POST" : 
-      console.log(action.payload);
+        posts: action.payload,
+      };
+    case "CREATE_NEW_POST":
       return {
         ...state,
-        posts:action.payload
-      }
+        posts: action.payload,
+      };
+    case "SET_BOOKMARKS":
+      return {
+        ...state,
+        bookmarks: action.payload,
+      };
 
-    default :
-    return state;
+    default:
+      return state;
   }
 }
 

@@ -15,7 +15,6 @@ function MainPage() {
   return (
     <div className="item-home">
       <div>
-        <div onClick={() => createPostHandler(authState?.token,dataDispatch)}>Create</div>
         <PostModal/>
         {filteredPosts?.map((post) => {
           return <PostCard key={post._id} post={post} />;

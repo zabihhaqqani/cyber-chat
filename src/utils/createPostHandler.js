@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useAuthContext } from "../context/authContext";
 
-export const createPostHandler = async (token,dataDispatch) => {
+export const createPostHandler = async (token,dataDispatch,{content}) => {
 
   try {
     const { data, status } = await axios.post(
       `/api/posts`,
-      { postData: {} },
+      { postData: { content } },
       {
         headers: {
           authorization: token,
