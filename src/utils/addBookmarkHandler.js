@@ -14,7 +14,6 @@ const addBookmarkHandler = async (postId,token,dataDispatch) => {
     );
     console.log(status)
     if(status===200){
-      console.log(data?.bookmarks);
         dataDispatch({ type: "SET_BOOKMARKS", payload: data?.bookmarks });
     }
   } catch (error) {

@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const postLikeHandler = async (postId, token, dataDispatch) => {
-  console.log(postId);
   try {
     const { data, status } = await axios.post(
       `/api/posts/like/${postId}`,

@@ -11,10 +11,12 @@ import removeBookmarkHandler from "../../utils/removeBookmarkHandler";
 
 function PostCard({ post }) {
   const {dataDispatch,dataState} = useDataContext()
-  console.log(dataState?.posts?.map(item=>item));
   const { content, createdAt, likes, updatedAt, username, mediaURL, _id } =
     post;
   const {authState} = useAuthContext()
+
+    const isliked = () =>
+      likes?.likedBy?.filter(({ _id }) => _id === authState?.user?._id)?.length === 0;
   return (
     <div>
       <div className="post-card">
@@ -51,21 +53,20 @@ function PostCard({ post }) {
             ></i>
           )} */}
 
-          {dataState?.posts?.find((item) => item._id === _id) ? (
-            <i
-              onClick={() => {
-                postUnlikeHandler(_id, authState?.token, dataDispatch);
-              }}
-              className="fas fa-heart fa-lg"
-            ></i>
-          ) : (
-            <i
-              onClick={() => {
-                postLikeHandler(_id, authState?.token, dataDispatch);
-              }}
-              className="far fa-heart fa-lg"
-            ></i>
-          )}
+          <i
+            className={`${
+              isliked() ? "fa-regular" : "fa-solid"
+            } fa-heart fa-lg`}
+            onClick={() => {
+              if (!authState?.token) {
+                // toast.error("Please login to proceed!");
+              } else {
+                isliked()
+                  ? postLikeHandler(_id, authState?.token, dataDispatch)
+                  : postUnlikeHandler(_id, authState?.token, dataDispatch);
+              }
+            }}
+          ></i>
 
           {dataState?.bookmarks?.find((item) => item._id === _id) ? (
             <i

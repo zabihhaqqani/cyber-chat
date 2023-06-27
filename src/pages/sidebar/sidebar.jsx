@@ -17,9 +17,10 @@ function SideBar() {
         <li onClick={() => navigate("/bookmarks")}>
           <i className="fa-solid fa-bookmark fa-lg"></i>BookMarks
         </li>
-        <li>
+        <li onClick={() => navigate("/likedposts")}>
           {" "}
-          <i className="fa-solid fa-heart fa-lg"></i>Liked Posts
+          <i className="fa-solid fa-heart fa-lg"></i>
+          Liked Posts
         </li>
       </ul>
     </div>

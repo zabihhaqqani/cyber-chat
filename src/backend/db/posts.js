@@ -10,9 +10,9 @@ export const posts = [
   {
     _id: "sfgjuk_ftbj_6789_fghuSD",
     content:
-      "Excited to share my first e-commerce website built using ReactJS, mockbee server, vanilla CSS🥳. https://glamour-ecommerce.vercel.app/",
+      "I wrote a blog on how to make your first pull request using git and github, there is also a project you can send your pull request to learn better.",
     mediaURL:
-      "https://res.cloudinary.com/dqlasoiaw/video/upload/v1686771977/tech-social/Glamour_Ecommerce_-_Google_Chrome_2023-06-08_17-22-56_online-video-cutter.com_uaylnt.mp4",
+      "https://cdn.hashnode.com/res/hashnode/image/upload/v1642133597037/ncb6j-yXx.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp",
     likes: {
       likeCount: 25,
       likedBy: [],
@@ -21,25 +21,25 @@ export const posts = [
     comments: [
       {
         _id: "fyjksd_gb3j_37h8_fy7kBW",
-        username: "davidkyle",
-        text: "Awesome work Sudipta 🔥",
+        username: "jack",
+        text: "Great App!",
       },
       {
         _id: "hjThfd_6jfY_49H3_ks5kAt",
-        username: "julieadams",
-        text: "The UI is very beautiful with smooth, responsive and great colour combination. The user experience is amazing 🤩 with working backend.",
+        username: "benjamin",
+        text: "The Input can be larger for bigger names! ",
       },
     ],
-    username: "schakraborty",
+    username: "zabih",
     createdAt: "2023-05-21T10:55:06+05:30",
     updatedAt: formatDate(),
   },
   {
     _id: "jdAd6u_gd8u_4g89_sHk3ED",
     content:
-      "I’m happy to share that I’m starting a new position as Senior Software Engineer at Google!",
+      "Dive into memory management in Node.js with this beginner-friendly guide. Learn the essentials of proper management, best practices, and strategies to avoid common pitfalls. Make your applications efficient and reliable from the ground up.",
     mediaURL:
-      "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686811863/tech-social/shutterstock_630500720-4_bwekkt.jpg",
+      "https://wsrv.nl/?url=https%3A%2F%2Fcodedamn-blog.s3.amazonaws.com%2Fwp-content%2Fuploads%2F2023%2F06%2F16202913%2FpXaFJ3t0-5EHkPJfHlNK.png&w=1280&q=70&output=webp",
     likes: {
       likeCount: 23,
       likedBy: [],
@@ -48,52 +48,49 @@ export const posts = [
     comments: [
       {
         _id: "gskytu_gdku_5789g_hsK4uRF",
-        username: "linaabott",
-        text: "Congratulations John!",
+        username: "sabrina",
+        text: "Good Blog Henry!",
       },
     ],
-    username: "johnwilliam",
+    username: "henry",
     createdAt: "2022-03-12T10:35:21+05:30",
     updatedAt: formatDate(),
   },
   {
     _id: "gs5eubh_7hrk_6dg5_GfguQB",
-    content:
-      "I write my first technical blog about querySelector() and querySelectorAll() on elements in JavaScript. https://sudipta26.hashnode.dev/introducing-queryselector-and-queryselectorall-on-elements-in-javascript",
+    content: "#Github 😅😅😅",
     mediaURL:
-      "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686808219/tech-social/EDAef5fL7_zkli5s.jpg",
+      "https://pbs.twimg.com/media/FWLFxp-akAE2Zjr?format=jpg&name=900x900",
     likes: {
       likeCount: 6,
       likedBy: [],
       dislikedBy: [],
     },
     comments: [],
-    username: "schakraborty",
+    username: "zabih",
     createdAt: "2022-08-31T10:15:12+05:30",
     updatedAt: formatDate(),
   },
   {
     _id: "gdko7tg_hdJu_1298_gfkiDR",
-    content:
-      "Optimizing Android app performance: Minimize APK size and optimize resource usage for faster app installation and startup.",
+    content: "Happens with all of us!",
     mediaURL:
-      "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686814593/tech-social/How_to_Become_an_Android_Developer_qe0mpv.jpg",
+      "https://pbs.twimg.com/media/FRlqSRjaQAArhF8?format=jpg&name=small",
     likes: {
       likeCount: 12,
       likedBy: [],
       dislikedBy: [],
     },
     comments: [],
-    username: "davidkyle",
+    username: "jack",
     createdAt: "2022-03-12T11:25:24+05:30",
     updatedAt: formatDate(),
   },
   {
     _id: "gukRj5k_f5bj_6s89_fg5uSy",
-    content:
-      "Complete Backend Developer Roadmap in 2023. 150+ Free + Paid Resources. Drop a 👋 in the comments. Make sure you follow me so that I can DM You.",
+    content: "Peerlist Featured - Top 5 Profiles You Should Check This Week ✨",
     mediaURL:
-      "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686843689/tech-social/FyZwDsoXgAIi2H-_ydbpe4.jpg",
+      "https://pbs.twimg.com/media/FzoUwbmWwAM9uL7?format=jpg&name=small",
     likes: {
       likeCount: 17,
       likedBy: [],
@@ -102,27 +99,27 @@ export const posts = [
     comments: [
       {
         _id: "fhy5d8_jr2K_17h8_jAk6BW",
-        username: "schakraborty",
+        username: "zabih",
         text: "👋",
       },
     ],
-    username: "linaabott",
+    username: "sabrina",
     createdAt: "2023-06-12T10:25:07+05:30",
     updatedAt: formatDate(),
   },
   {
     _id: "e5Hyswe_btry_5g06_fGrYH3dc",
     content:
-      "🚀Join us at agprop and help shape the future of real estate! We're hiring talented interns and developers for Full Stack, Frontend, Backend, UI/UX, & DevOps roles. Work with cutting-edge tech like cloud and machine learning. Send your resume to vrijraj.s@agprop.in",
+      "Made an app with React JS that gives you trending animes with different genres. I have also given ratings to each of the m. Do check it out!",
     mediaURL:
-      "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686846308/tech-social/FvRFiZ9XoAA3xxo_n0rclt.jpg",
+      "https://pbs.twimg.com/media/FKhnihTVkAE6D2P?format=jpg&name=medium",
     likes: {
       likeCount: 15,
       likedBy: [],
       dislikedBy: [],
     },
     comments: [],
-    username: "julieadams",
+    username: "benjamin",
     createdAt: "2022-04-22T10:25:24+05:30",
     updatedAt: formatDate(),
   },
