@@ -27,7 +27,7 @@ const DataProvider = ({ children }) => {
     try {
       const { status, data } = await axios.get("/api/posts");
       if (status === 200) {
-        dataDispatch({ type: "GET_ALL_USER_POSTS", payload: data?.posts });
+        dataDispatch({ type: "SET_USER_POSTS", payload: data?.posts });
       }
     } catch (error) {
       console.error(error);

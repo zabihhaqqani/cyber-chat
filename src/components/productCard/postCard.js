@@ -15,8 +15,15 @@ function PostCard({ post }) {
     post;
   const {authState} = useAuthContext()
 
-    const isliked = () =>
+    const likedPosts = () =>
       likes?.likedBy?.filter(({ _id }) => _id === authState?.user?._id)?.length === 0;
+
+
+  const individualPostEdit = dataState?.posts?.filter(
+    (post) => post.username === authState?.user?.username
+  );
+
+
   return (
     <div>
       <div className="post-card">
@@ -29,6 +36,8 @@ function PostCard({ post }) {
             <strong>{moment(createdAt).format("LL")}</strong>
           </p>
           <p className="user-name">@{username}</p>
+          {individualPostEdit ? <h1>...</h1> : <h1>...</h1>}
+          <p>Delete</p>
         </div>
         <p className="post-card-content">{content}</p>
         <div className="img-container">
@@ -55,13 +64,13 @@ function PostCard({ post }) {
 
           <i
             className={`${
-              isliked() ? "fa-regular" : "fa-solid"
+              likedPosts() ? "fa-regular" : "fa-solid"
             } fa-heart fa-lg`}
             onClick={() => {
               if (!authState?.token) {
                 // toast.error("Please login to proceed!");
               } else {
-                isliked()
+                likedPosts()
                   ? postLikeHandler(_id, authState?.token, dataDispatch)
                   : postUnlikeHandler(_id, authState?.token, dataDispatch);
               }

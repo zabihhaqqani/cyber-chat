@@ -1,14 +1,17 @@
-import React from 'react'
-import { useDataContext } from '../../context/dataContext'
-import { sortedPosts } from '../../utils/sortedPosts';
-import PostCard from '../../components/productCard/postCard';
-import Navbar from '../navbar/navbar';
-import SideBar from '../sidebar/sidebar';
-import RightSideBar from '../rightSideBar/rightSideBar';
+import React from "react";
+import { useDataContext } from "../../context/dataContext";
+import { sortedPosts } from "../../utils/sortedPosts";
+import PostCard from "../../components/productCard/postCard";
+import Navbar from "../navbar/navbar";
+import SideBar from "../sidebar/sidebar";
+import RightSideBar from "../rightSideBar/rightSideBar";
 
 const BookMarks = () => {
-    const {dataState,sortBy} = useDataContext()
-     const filteredPosts = sortedPosts(dataState?.bookmarks,sortBy);
+  const { dataState } = useDataContext();
+
+  const bookmarkedPosts = (id) =>
+    dataState?.posts?.filter((post) => post._id === id)[0];
+
   return (
     <div>
       <Navbar />
@@ -16,8 +19,10 @@ const BookMarks = () => {
         <SideBar />
         <div className="item-home">
           <div>
-            {filteredPosts?.map((post) => {
-              return <PostCard key={post._id} post={post} />;
+            {dataState?.bookmarks?.map((post) => {
+              return (
+                <PostCard key={post._id} post={bookmarkedPosts(post._id)} />
+              );
             })}
           </div>
         </div>
@@ -25,6 +30,6 @@ const BookMarks = () => {
       </div>
     </div>
   );
-}
+};
 
-export default BookMarks
+export default BookMarks;

@@ -1,6 +1,6 @@
 const dataReducer = (state,action) => {
   switch (action.type) {
-    case "GET_ALL_USER_POSTS":
+    case "SET_USER_POSTS":
       return {
         ...state,
         posts: action.payload,
