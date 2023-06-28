@@ -11,12 +11,15 @@ function MainPage() {
   const {authState} = useAuthContext()
 
   const individualUserPosts = dataState?.posts?.filter((post)=>post.username === authState?.user?.username)
+  // console.log(authState);
 
+  const filteredPosts = sortedPosts(individualUserPosts, sortBy);
+  // console.log(dataState?.posts);
   return (
     <div className="item-home">
       <div>
-        <PostModal />
-        {individualUserPosts?.map((post) => {
+        <PostModal/>
+        {filteredPosts?.map((post) => {
           return <PostCard key={post._id} post={post} />;
         })}
       </div>

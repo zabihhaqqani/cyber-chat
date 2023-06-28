@@ -1,14 +1,26 @@
 import React, { useState } from "react";
 import { useDataContext } from "../../context/dataContext";
 import { useAuthContext } from "../../context/authContext";
+import followUserHandler from "../../utils/followUserHandler";
 
 function RightSideBar() {
-  const { sortBy, setSortBy, dataState } = useDataContext();
+  const { sortBy, setSortBy, dataState, dataDispatch } = useDataContext();
   const { authState } = useAuthContext();
 
-  const suggestedUsers = dataState?.posts?.filter(
-    (post) => post.username !== authState?.user?.username
-  );
+
+   const userData = dataState?.users?.find(
+     (user) => user.username === authState?.user?.username
+   );
+
+  // const suggestedUsers = dataState?.users
+  //   ?.filter((user) => user.username !== userData?.username)
+  //   ?.filter(
+  //     (eachUser) =>
+  //       !userData?.following?.find(
+  //         (data) => data.username === eachUser.username
+  //       )
+  //   );
+    const suggestedUsers = dataState?.users?.filter((user)=>user.username!== authState?.user?.username)
   return (
     <div className="item-right">
       <select
@@ -27,7 +39,7 @@ function RightSideBar() {
           return (
             <div key={post?._id}>
               <li>{post?.username}</li>
-              <button>Follow</button>
+              <button onClick={() => followUserHandler(post?._id,authState?.token,dataDispatch)}>Follow</button>
             </div>
           );
         })}

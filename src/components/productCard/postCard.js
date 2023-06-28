@@ -14,16 +14,11 @@ function PostCard({ post }) {
   const { content, createdAt, likes, updatedAt, username, mediaURL, _id } =
     post;
   const {authState} = useAuthContext()
-
+  
     const likedPosts = () =>
-      likes?.likedBy?.filter(({ _id }) => _id === authState?.user?._id)?.length === 0;
-
-
-  const individualPostEdit = dataState?.posts?.filter(
-    (post) => post.username === authState?.user?.username
-  );
-
-
+      likes?.likedBy?.filter(({ _id }) => _id === authState?.user?._id)
+        ?.length === 0;
+       
   return (
     <div>
       <div className="post-card">
@@ -36,33 +31,13 @@ function PostCard({ post }) {
             <strong>{moment(createdAt).format("LL")}</strong>
           </p>
           <p className="user-name">@{username}</p>
-          {individualPostEdit ? <h1>...</h1> : <h1>...</h1>}
-          <p>Delete</p>
         </div>
         <p className="post-card-content">{content}</p>
         <div className="img-container">
           <img className="media-img" src={mediaURL} alt="" />
         </div>
         <div className="card-icons-container">
-          {/* {likedHandler ? (
-            <i
-              onClick={() => {
-                postUnlikeHandler(_id, authState?.token, dataDispatch);
-                setLikedHandler(false);
-              }}
-              className="fas fa-heart fa-lg"
-            ></i>
-          ) : (
-            <i
-              onClick={() => {
-                postLikeHandler(_id, authState?.token, dataDispatch);
-                setLikedHandler(true);
-              }}
-              className="far fa-heart fa-lg"
-            ></i>
-          )} */}
-
-          <i
+       <i
             className={`${
               likedPosts() ? "fa-regular" : "fa-solid"
             } fa-heart fa-lg`}

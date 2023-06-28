@@ -100,7 +100,7 @@ export const posts = [
       {
         _id: "fhy5d8_jr2K_17h8_jAk6BW",
         username: "zabih",
-        text: "👋",
+        text: "Great Profiles!",
       },
     ],
     username: "sabrina",

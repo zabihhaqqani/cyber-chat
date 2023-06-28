@@ -33,6 +33,16 @@ const DataProvider = ({ children }) => {
       console.error(error);
     }
   };
+    const getUsers = async () => {
+      try {
+        const { status, data } = await axios.get("/api/users");
+        if (status === 200) {
+          dataDispatch({ type: "SET_USERS", payload: data?.users });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
   const getAllBookmarks = async () => {
     try {
@@ -56,6 +66,7 @@ const DataProvider = ({ children }) => {
 
       getUserPosts()
       getAllBookmarks();
+      getUsers();
     }
   }, [authState?.token]);
 
