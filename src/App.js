@@ -6,6 +6,7 @@ import BookMarks from "./pages/bookmark/bookmark";
 import LikedPosts from "./pages/likedPosts/likedPost";
 import Login from "./pages/login/login";
 import RequiresAuth from "./Auth/requireAuth";
+import { SignUp } from "./pages/signup/signup";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
             </RequiresAuth>
           }
         />
+        <Route path="/signup" element={<SignUp/>}/>
       </Routes>
     </div>
   );

@@ -83,7 +83,7 @@ const Login = () => {
               Login as Guest
             </button>
             <button
-              style={{ backgroundColor: "black" }}
+              style={{ backgroundColor: "" }}
               className="add-to-cart-btn"
               onClick={() => navigate("/signup")}
             >

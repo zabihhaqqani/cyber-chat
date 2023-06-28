@@ -42,12 +42,39 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const userSignup = async (signupData) => {
+    try {
+      const {status,data} = await axios.post(`/api/auth/signup`, signupData);
+      if (status === 201) {
+       localStorage.setItem(
+         "userData",
+         JSON.stringify({
+           user: data?.foundUser,
+           token: data?.encodedToken,
+         })
+       );
+        authDispatch({
+          type: "SET_USER",
+          payload: data?.createdUser,
+        });
+        authDispatch({
+          type: "SET_TOKEN",
+          payload: data?.encodedToken,
+        });
+        navigate("/");
+        console.log("done");
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
     // userLogin()
   }, []);
 
   return (
-    <AuthContext.Provider value={{ authState, userLogin,localStorageData }}>
+    <AuthContext.Provider value={{ authState, userLogin,localStorageData,userSignup }}>
       {children}
     </AuthContext.Provider>
   );
