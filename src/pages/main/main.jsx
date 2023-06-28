@@ -18,11 +18,9 @@ function MainPage() {
         (user) => user?.username === post?.username
       ) || authState?.user?.username === post?.username
   );
-  console.clear()
-  console.log(followedUserPosts);
+
 
   const filteredPosts = sortedPosts(followedUserPosts, sortBy);
-  // console.log(dataState?.posts);
   return (
     <div className="item-home">
       <div>

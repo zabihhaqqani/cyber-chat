@@ -10,15 +10,23 @@ import addBookmarkHandler from "../../utils/addBookmarkHandler";
 import removeBookmarkHandler from "../../utils/removeBookmarkHandler";
 
 function PostCard({ post }) {
-  const {dataDispatch,dataState} = useDataContext()
-  const { content, createdAt, likes, updatedAt, username, mediaURL, _id } =
-    post;
-  const {authState} = useAuthContext()
-  
-    const likedPosts = () =>
-      likes?.likedBy?.filter(({ _id }) => _id === authState?.user?._id)
-        ?.length === 0;
-       
+  const { dataDispatch, dataState } = useDataContext();
+  const {
+    content,
+    createdAt,
+    likes,
+    updatedAt,
+    username,
+    mediaURL,
+    _id,
+    comments,
+  } = post;
+  const { authState } = useAuthContext();
+  const [ showComments, setShowComments ] = useState(false);
+  const likedPosts = () =>
+    likes?.likedBy?.filter(({ _id }) => _id === authState?.user?._id)
+      ?.length === 0;
+
   return (
     <div>
       <div className="post-card">
@@ -37,7 +45,7 @@ function PostCard({ post }) {
           <img className="media-img" src={mediaURL} alt="" />
         </div>
         <div className="card-icons-container">
-       <i
+          <i
             className={`${
               likedPosts() ? "fa-regular" : "fa-solid"
             } fa-heart fa-lg`}
@@ -69,9 +77,28 @@ function PostCard({ post }) {
           )}
 
           {likes?.likeCount}
-          <i className="far fa-comment fa-lg"></i>
+          <i
+            onClick={() => setShowComments(!showComments)}
+            className="far fa-comment fa-lg"
+          ></i>
+          {comments?.length}
           <i className="fas fa-share fa-lg"></i>
         </div>
+        {showComments ? (
+          <div className="comments-container">
+            {comments?.map((data) => {
+              const { _id, username, text } = data;
+              return (
+                <div key={_id}>
+                  <p>{username}</p>
+                  <p>{text}</p>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
