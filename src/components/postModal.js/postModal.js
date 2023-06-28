@@ -7,28 +7,19 @@ import { useDataContext } from "../../context/dataContext";
 
 const PostModal = () => {
   const { authState } = useAuthContext();
-  const {dataDispatch}  = useDataContext()
-  const [postContent,setPostContent] = useState("")
- const imageSelectHandler = () => {
-   const input = document.createElement("input");
-   input.type = "file";
-   input.accept = "image/*";
-   input.onchange = (e) => {
-     const file = e.target.files[0];
-     Math.round(file.size / 1024000) 
-      
-   };
-   input.click();
- };
+  const { dataDispatch } = useDataContext();
+  const [postContent, setPostContent] = useState("");
 
- const postBtnHandler = async() =>{
+  const postBtnHandler = async () => {
     try {
-        // const response = await media()
-        createPostHandler(authState?.token,dataDispatch,{content:postContent})
+      // const response = await media()
+      createPostHandler(authState?.token, dataDispatch, {
+        content: postContent,
+      });
     } catch (error) {
-        console.error(error)
+      console.error(error);
     }
- } 
+  };
   return (
     <div>
       {" "}
@@ -49,11 +40,17 @@ const PostModal = () => {
         </div>
         <div className="post-container">
           <div>
-            <i className="fa-regular fa-image" onClick={imageSelectHandler}></i>
+            {/* <i className="fa-regular fa-image" onClick={imageSelectHandler}></i> */}
           </div>
-          <button onClick={() => postBtnHandler()} className="post-btn">
-            POST
-          </button>
+          {postContent === "" ? (
+            <button style={{padding:"0.5rem"}} disabled>
+              POST
+            </button>
+          ) : (
+            <button onClick={() => postBtnHandler()} className="post-btn">
+              POST
+            </button>
+          )}
         </div>
       </div>
     </div>
