@@ -30,7 +30,7 @@ const PostModal = () => {
             <textarea
               onChange={(e) => setPostContent(e.target.value)}
               className="text-area"
-              placeholder="What is happening?!"
+              placeholder="What is happening?"
               name=""
               id=""
               cols="40"

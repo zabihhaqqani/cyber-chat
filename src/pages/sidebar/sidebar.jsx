@@ -1,9 +1,9 @@
-import React from 'react'
-import "./sidebar.css"
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import "./sidebar.css";
+import { useNavigate } from "react-router-dom";
 
 function SideBar() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div className="sidebar-container item-left">
       <ul className="sidebar-items">
@@ -22,9 +22,19 @@ function SideBar() {
           <i className="fa-solid fa-heart fa-lg"></i>
           Liked Posts
         </li>
+        <li
+          onClick={() => {
+            navigate("/login");
+            localStorage.clear();
+          }}
+        >
+          {" "}
+          <i className="fa-solid fa-heart fa-lg"></i>
+          Logout
+        </li>
       </ul>
     </div>
   );
 }
 
-export default SideBar
+export default SideBar;

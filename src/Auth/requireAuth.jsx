@@ -4,8 +4,12 @@ import { useAuthContext } from '../context/authContext'
 
 const RequiresAuth = ({children}) => {
     let location = useLocation()
-    const {isUserLoggenIn} = useAuthContext()
-  return isUserLoggenIn?children:<Navigate to="/login" state= {{from:location}}/>
+    const {localStorageData} = useAuthContext()
+  return localStorageData ? (
+    children
+  ) : (
+    <Navigate to="/login" state={{ from: location }} />
+  );
 }
 
 export default RequiresAuth;
