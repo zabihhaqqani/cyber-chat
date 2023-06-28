@@ -20,6 +20,11 @@ const dataReducer = (state,action) => {
         ...state,
         posts: action.payload,
       };
+      case "DELETE_POST":
+        return {
+          ...state,
+          posts:action.payload,
+        }
     case "SET_BOOKMARKS":
       return {
         ...state,

@@ -8,9 +8,11 @@ import { useDataContext } from "../../context/dataContext";
 import { postUnlikeHandler } from "../../utils/postUnlikeHandler";
 import addBookmarkHandler from "../../utils/addBookmarkHandler";
 import removeBookmarkHandler from "../../utils/removeBookmarkHandler";
+import { deletePostHandler } from "../../utils/deletePostHandler";
 
 function PostCard({ post }) {
   const { dataDispatch, dataState } = useDataContext();
+
   const {
     content,
     createdAt,
@@ -26,6 +28,8 @@ function PostCard({ post }) {
   const likedPosts = () =>
     likes?.likedBy?.filter(({ _id }) => _id === authState?.user?._id)
       ?.length === 0;
+    
+      const delteablePosts =  authState?.user?.username === username
 
   return (
     <div>
@@ -39,6 +43,17 @@ function PostCard({ post }) {
             <strong>{moment(createdAt).format("LL")}</strong>
           </p>
           <p className="user-name">@{username}</p>
+          {delteablePosts ? (
+            <h4
+              onClick={() =>
+                deletePostHandler(_id, authState?.token, dataDispatch)
+              }
+            >
+              ...
+            </h4>
+          ) : (
+            ""
+          )}
         </div>
         <p className="post-card-content">{content}</p>
         <div className="img-container">
