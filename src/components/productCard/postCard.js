@@ -67,23 +67,6 @@ function PostCard({ post }) {
               className="far fa-bookmark fa-lg"
             ></i>
           )}
-          {/* {bookmarkHandler ? (
-            <i
-              onClick={() => {
-                removeBookmarkHandler(_id, authState?.token, dataDispatch);
-                setBookmarkHandler(false);
-              }}
-              className="fas fa-bookmark fa-lg"
-            ></i>
-          ) : (
-            <i
-              onClick={() => {
-                addBookmarkHandler(_id, authState?.token, dataDispatch);
-                setBookmarkHandler(true);
-              }}
-              className="far fa-bookmark fa-lg"
-            ></i>
-          )} */}
 
           {likes?.likeCount}
           <i className="far fa-comment fa-lg"></i>

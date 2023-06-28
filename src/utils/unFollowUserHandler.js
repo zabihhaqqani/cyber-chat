@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const followUserHandler = async (followUserId, token,dataDispatch) => {
+const unFollowUserHandler = async (followUserId, token,dataDispatch) => {
   try {
     const { status, data } = await axios.post(
-      `/api/users/follow/${followUserId}`,
+      `/api/users/unfollow/${followUserId}`,
       {},
       {
         headers: {
@@ -20,4 +20,4 @@ const followUserHandler = async (followUserId, token,dataDispatch) => {
   }
 };
 
-export default followUserHandler;
+export default unFollowUserHandler;

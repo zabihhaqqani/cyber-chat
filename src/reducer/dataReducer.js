@@ -5,11 +5,16 @@ const dataReducer = (state,action) => {
         ...state,
         posts: action.payload,
       };
-      case "SET_USERS" :
-        return {
-          ...state,
-          users:action.payload,
-        }
+    case "SET_USERS":
+      return {
+        ...state,
+        users: action.payload,
+      };
+    case "UPDATE_USERS":
+      return {
+        ...state,
+        users: state?.users?.map(user=>user._id === action.payload._id ? action.payload : user) 
+      };
     case "CREATE_NEW_POST":
       return {
         ...state,

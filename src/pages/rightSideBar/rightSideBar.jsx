@@ -2,25 +2,23 @@ import React, { useState } from "react";
 import { useDataContext } from "../../context/dataContext";
 import { useAuthContext } from "../../context/authContext";
 import followUserHandler from "../../utils/followUserHandler";
+import userFollowed from "../../utils/userFollowed";
+import unFollowUserHandler from "../../utils/unFollowUserHandler";
 
 function RightSideBar() {
   const { sortBy, setSortBy, dataState, dataDispatch } = useDataContext();
   const { authState } = useAuthContext();
 
+  const user = dataState?.users?.find(
+    (user) => user?.username === authState?.user?.username
+  );
 
-   const userData = dataState?.users?.find(
-     (user) => user.username === authState?.user?.username
-   );
+  const suggestedUsers = dataState?.users
+    ?.filter((users) => users.username !== user?.username)
+    ?.filter((prevUser) =>
+      user?.following?.filter((user) => user.username === prevUser.username)
+    );
 
-  // const suggestedUsers = dataState?.users
-  //   ?.filter((user) => user.username !== userData?.username)
-  //   ?.filter(
-  //     (eachUser) =>
-  //       !userData?.following?.find(
-  //         (data) => data.username === eachUser.username
-  //       )
-  //   );
-    const suggestedUsers = dataState?.users?.filter((user)=>user.username!== authState?.user?.username)
   return (
     <div className="item-right">
       <select
@@ -35,11 +33,28 @@ function RightSideBar() {
       </select>
       <h3>Suggestions for you</h3>
       <div>
-        {suggestedUsers?.map((post) => {
+        {suggestedUsers?.map((user) => {
+          const { _id, username } = user;
           return (
-            <div key={post?._id}>
-              <li>{post?.username}</li>
-              <button onClick={() => followUserHandler(post?._id,authState?.token,dataDispatch)}>Follow</button>
+            <div key={_id}>
+              <li>{username}</li>
+              {userFollowed(dataState?.users, _id) ? (
+                <button
+                  onClick={() => {
+                    unFollowUserHandler(_id, authState?.token, dataDispatch);
+                  }}
+                >
+                  Unfollow
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    followUserHandler(_id, authState?.token, dataDispatch);
+                  }}
+                >
+                  Follow
+                </button>
+              )}
             </div>
           );
         })}

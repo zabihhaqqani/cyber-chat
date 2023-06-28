@@ -11,7 +11,7 @@ function MainPage() {
   const {authState} = useAuthContext()
 
   const individualUserPosts = dataState?.posts?.filter((post)=>post.username === authState?.user?.username)
-  // console.log(authState);
+  console.log(individualUserPosts);
 
   const filteredPosts = sortedPosts(individualUserPosts, sortBy);
   // console.log(dataState?.posts);
