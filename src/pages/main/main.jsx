@@ -10,10 +10,18 @@ function MainPage() {
   const { dataState, dataDispatch ,sortBy} = useDataContext();
   const {authState} = useAuthContext()
 
-  const individualUserPosts = dataState?.posts?.filter((post)=>post.username === authState?.user?.username)
-  console.log(individualUserPosts);
+  const userLoggedIn = dataState?.users?.find(user=>user.username === authState?.user?.username)
 
-  const filteredPosts = sortedPosts(individualUserPosts, sortBy);
+  const followedUserPosts = dataState?.posts?.filter(
+    (post) =>
+      userLoggedIn?.following?.some(
+        (user) => user?.username === post?.username
+      ) || authState?.user?.username === post?.username
+  );
+  console.clear()
+  console.log(followedUserPosts);
+
+  const filteredPosts = sortedPosts(followedUserPosts, sortBy);
   // console.log(dataState?.posts);
   return (
     <div className="item-home">

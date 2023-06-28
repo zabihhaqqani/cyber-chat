@@ -82,7 +82,7 @@ export const posts = [
       dislikedBy: [],
     },
     comments: [],
-    username: "jack",
+    username: "jackparker",
     createdAt: "2022-03-12T11:25:24+05:30",
     updatedAt: formatDate(),
   },
