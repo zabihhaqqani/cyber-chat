@@ -6,16 +6,17 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
 
     const localStorageData = JSON.parse(localStorage.getItem("userData"))
-    const initialAuth = {
+    const initialState = {
       user: localStorageData?.user || {},
       token: localStorageData?.token || "",
     };
-    const [authState, authDispatch] = useReducer(authReducer, initialAuth);
+    const [authState, authDispatch] = useReducer(authReducer, initialState);
 
     const loginData = {
       username: "adarshbalika",
       password: "adarshBalika123",
     };
+    
   const userLogin = async () => {
     try {
       const { status, data } = await axios.post("api/auth/login", loginData);
