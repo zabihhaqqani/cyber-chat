@@ -69,6 +69,7 @@ const DataProvider = ({ children }) => {
       getUsers();
     }
   }, [authState?.token]);
+    console.log(dataState?.users);
 
   return (
     <DataContext.Provider

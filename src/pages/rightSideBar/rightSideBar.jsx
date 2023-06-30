@@ -18,9 +18,8 @@ function RightSideBar() {
     ?.filter((prevUser) =>
       user?.following?.filter((user) => user.username === prevUser.username)
     );
-
-  return (
-    <div className="item-right">
+    return (
+      <div className="item-right">
       <select
         value={sortBy}
         onChange={(e) => setSortBy(e.target.value)}
@@ -38,7 +37,21 @@ function RightSideBar() {
           return (
             <div key={_id}>
               <li>{username}</li>
-              {userFollowed(dataState?.users, _id) ? (
+            
+              {   console.log(userFollowed(dataState?.users, _id))}
+              <button
+                onClick={() => {
+                  if(userFollowed(dataState?.users,_id)){
+
+                    unFollowUserHandler(_id, authState?.token, dataDispatch);
+                  }else {
+                    followUserHandler(_id, authState?.token, dataDispatch);
+                  }
+
+                }}
+              >{userFollowed(dataState?.users,_id)?"unfollow":"follow"}</button>
+
+              {/* {userFollowed(dataState?.users, _id) ? (
                 <button
                   onClick={() => {
                     unFollowUserHandler(_id, authState?.token, dataDispatch);
@@ -54,7 +67,7 @@ function RightSideBar() {
                 >
                   Follow
                 </button>
-              )}
+              )} */}
             </div>
           );
         })}
