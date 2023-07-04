@@ -37,7 +37,7 @@ function MainPage() {
           <option value="Oldest">▼ Oldest</option>
         </select>
         {filteredPosts?.map((post) => {
-          return <PostCard key={post._id} post={post} />;
+          return <PostCard key={post._id} post={post} showComments={false} />;
         })}
       </div>
     </div>

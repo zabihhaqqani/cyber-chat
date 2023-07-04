@@ -7,9 +7,9 @@ import LikedPosts from "./pages/likedPosts/likedPost";
 import Login from "./pages/login/login";
 import RequiresAuth from "./Auth/requireAuth";
 import { SignUp } from "./pages/signup/signup";
+import { IndividualPostPage } from "./components/individualPost/indivialPost";
 
 function App() {
-  let { postId } = useParams();
   return (
     <div className="App">
       <Routes>
@@ -47,7 +47,14 @@ function App() {
           }
         />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/post/:id" element={<RequiresAuth></RequiresAuth>} />
+        <Route
+          path="/post/:id"
+          element={
+            <RequiresAuth>
+              <IndividualPostPage />
+            </RequiresAuth>
+          }
+        />
       </Routes>
     </div>
   );

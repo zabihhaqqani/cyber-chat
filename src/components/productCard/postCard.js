@@ -15,8 +15,9 @@ import userFollowed from "../../utils/userFollowed";
 import unFollowUserHandler from "../../utils/unFollowUserHandler";
 import followUserHandler from "../../utils/followUserHandler";
 import { useNavigate } from "react-router-dom";
+import Comments from "../comments/comments";
 
-function PostCard({ post }) {
+function PostCard({ post,showComments }) {
   const { dataDispatch, dataState } = useDataContext();
 
   const {
@@ -30,7 +31,6 @@ function PostCard({ post }) {
     comments,
   } = post;
   const { authState } = useAuthContext();
-  const [showComments, setShowComments] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const navigate = useNavigate()
@@ -158,32 +158,19 @@ function PostCard({ post }) {
             ></i>
           )}
           <i
-            onClick={() => setShowComments(!showComments)}
+            onClick={() => navigate(`/post/${_id}`)}
             className="far fa-comment fa-lg"
           ></i>
           {comments?.length}
           <i className="fas fa-share fa-lg"></i>
         </div>
-        {showComments ? (
-          <div className="comments-container">
-            {comments?.map((data) => {
-              const { _id, username, text } = data;
-              return (
-                <div key={_id}>
-                  <p>{username}</p>
-                  <p>{text}</p>
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          ""
-        )}
+
+       
       </div>
 
       {showEditModal && (
         <PostModal post={post} setShowEditModal={setShowEditModal} />
-      )}
+        )}
       <EditPostModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
@@ -193,7 +180,8 @@ function PostCard({ post }) {
         token={authState?.token}
         dataDispatch={dataDispatch}
         content={content}
-      />
+        />
+        {showComments&&<Comments comments={comments}/>} 
     </div>
   );
 }
