@@ -9,6 +9,11 @@ import { postUnlikeHandler } from "../../utils/postUnlikeHandler";
 import addBookmarkHandler from "../../utils/addBookmarkHandler";
 import removeBookmarkHandler from "../../utils/removeBookmarkHandler";
 import { deletePostHandler } from "../../utils/deletePostHandler";
+import PostModal from "../postModal.js/postModal";
+import EditPostModal from "../editPostModal/editPostModal";
+import userFollowed from "../../utils/userFollowed";
+import unFollowUserHandler from "../../utils/unFollowUserHandler";
+import followUserHandler from "../../utils/followUserHandler";
 
 function PostCard({ post }) {
   const { dataDispatch, dataState } = useDataContext();
@@ -24,12 +29,36 @@ function PostCard({ post }) {
     comments,
   } = post;
   const { authState } = useAuthContext();
-  const [ showComments, setShowComments ] = useState(false);
-  const likedPosts = () =>
+  const [showComments, setShowComments] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  const isliked = () =>
     likes?.likedBy?.filter(({ _id }) => _id === authState?.user?._id)
-      ?.length === 0;
-    
-      const delteablePosts =  authState?.user?.username === username
+      ?.length !== 0;
+  const delteablePosts = authState?.user?.username === username;
+
+  const editClickHandler = () => {
+    setShowOptions(false);
+    setShowEditModal(true);
+  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [postContent, setPostContent] = useState(content);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSavePost = (editedContent) => {
+    setPostContent(editedContent);
+  };
+    const userData = dataState?.users?.find(
+      (user) => user?.username === username
+    );
 
   return (
     <div>
@@ -44,15 +73,52 @@ function PostCard({ post }) {
           </p>
           <p className="user-name">@{username}</p>
           {delteablePosts ? (
-            <h4
-              onClick={() =>
-                deletePostHandler(_id, authState?.token, dataDispatch)
-              }
-            >
-              ...
+            <h4 onClick={() => setShowOptions(!showOptions)}>
+              {showOptions && (
+                <div className="options-container">
+                  <p onClick={handleOpenModal}>Edit</p>
+                  <p
+                    onClick={() =>
+                      deletePostHandler(_id, authState?.token, dataDispatch)
+                    }
+                  >
+                    Delete
+                  </p>
+                </div>
+              )}
             </h4>
           ) : (
-            ""
+            <button
+              onClick={(e) => {
+                if (userFollowed(dataState?.users, userData?._id)) {
+                  unFollowUserHandler(
+                    userData?._id,
+                    authState?.token,
+                    dataDispatch
+                  );
+                } else {
+
+                  followUserHandler(
+                    userData?._id,
+                    authState?.token,
+                    dataDispatch
+                  );
+                }
+              }}
+            >
+              {userFollowed(dataState?.users, userData?._id)
+                ? "Following"
+                : "UnFollow"}
+            </button>
+          )}
+          {!showOptions && (
+            <i
+              className="fa-solid fa-ellipsis"
+              onClick={(e) => {
+                // e.stopPropagation();
+                setShowOptions(!showOptions);
+              }}
+            ></i>
           )}
         </div>
         <p className="post-card-content">{content}</p>
@@ -60,21 +126,21 @@ function PostCard({ post }) {
           <img className="media-img" src={mediaURL} alt="" />
         </div>
         <div className="card-icons-container">
-          <i
-            className={`${
-              likedPosts() ? "fa-regular" : "fa-solid"
-            } fa-heart fa-lg`}
-            onClick={() => {
-              if (!authState?.token) {
-                // toast.error("Please login to proceed!");
-              } else {
-                likedPosts()
-                  ? postLikeHandler(_id, authState?.token, dataDispatch)
-                  : postUnlikeHandler(_id, authState?.token, dataDispatch);
-              }
-            }}
-          ></i>
-
+          <div>
+            <i
+              className={`${isliked() ? "fa-solid" : "fa-regular"} fa-heart`}
+              onClick={() => {
+                if (!authState?.token) {
+                  // toast.error("Please login to proceed!");
+                } else {
+                  isliked()
+                    ? postUnlikeHandler(_id, authState?.token, dataDispatch)
+                    : postLikeHandler(_id, authState?.token, dataDispatch);
+                }
+              }}
+            ></i>{" "}
+            <span>{likes?.likeCount}</span>
+          </div>
           {dataState?.bookmarks?.find((item) => item._id === _id) ? (
             <i
               onClick={() => {
@@ -90,8 +156,6 @@ function PostCard({ post }) {
               className="far fa-bookmark fa-lg"
             ></i>
           )}
-
-          {likes?.likeCount}
           <i
             onClick={() => setShowComments(!showComments)}
             className="far fa-comment fa-lg"
@@ -115,6 +179,20 @@ function PostCard({ post }) {
           ""
         )}
       </div>
+
+      {showEditModal && (
+        <PostModal post={post} setShowEditModal={setShowEditModal} />
+      )}
+      <EditPostModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        postContent={postContent}
+        onSave={handleSavePost}
+        id={_id}
+        token={authState?.token}
+        dataDispatch={dataDispatch}
+        content={content}
+      />
     </div>
   );
 }

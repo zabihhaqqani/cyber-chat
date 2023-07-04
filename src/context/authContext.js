@@ -16,10 +16,6 @@ const AuthProvider = ({ children }) => {
   };
   const [authState, authDispatch] = useReducer(authReducer, initialState);
 
-  // const loginData = {
-  //   username: "adarshbalika",
-  //   password: "adarshBalika123",
-  // };
 
   const userLogin = async (loginData) => {
     try {
@@ -68,13 +64,23 @@ const AuthProvider = ({ children }) => {
       console.error(e);
     }
   };
-
+  const userLogout = () => {
+    localStorage.removeItem("userData");
+    authDispatch({ type: "SET_USER", payload: {} });
+    authDispatch({ type: "SET_TOKEN", payload: "" });
+  };
   useEffect(() => {
     // userLogin()
+       if (localStorageData) {
+         authDispatch({ type: "SET_USER", payload: localStorageData?.user });
+         authDispatch({ type: "SET_TOKEN", payload: localStorageData?.token });
+       }
   }, []);
 
   return (
-    <AuthContext.Provider value={{ authState, userLogin,localStorageData,userSignup }}>
+    <AuthContext.Provider
+      value={{ authState, userLogin, localStorageData, userSignup, userLogout }}
+    >
       {children}
     </AuthContext.Provider>
   );

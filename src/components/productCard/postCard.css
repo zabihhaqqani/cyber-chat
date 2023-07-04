@@ -67,3 +67,18 @@
     padding-bottom: 1rem;
     padding-top: 0.5rem;
 }
+
+.options-container{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.options-container p{
+    color: white;
+}
+
+.options-container p:hover{
+    cursor: pointer;
+}

@@ -10,6 +10,7 @@ import { useAuthContext } from "../../context/authContext";
 const LikedPosts = () => {
   const { dataState } = useDataContext();
   const {authState} = useAuthContext()
+  
     const [postsLikedByUser, setPostsLikedByUser] = useState([]);
 
  useEffect(() => {

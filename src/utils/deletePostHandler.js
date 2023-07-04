@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const deletePostHandler = async (postId, token, dataDispatch) => {
-  console.log(postId,token);
   try {
 
     const { data, status } = await axios.delete(

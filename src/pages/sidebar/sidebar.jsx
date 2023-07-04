@@ -1,8 +1,10 @@
 import React from "react";
 import "./sidebar.css";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../context/authContext";
 
 function SideBar() {
+  const {userLogout} = useAuthContext()
   const navigate = useNavigate();
   return (
     <div className="sidebar-container item-left">
@@ -25,7 +27,7 @@ function SideBar() {
         <li
           onClick={() => {
             navigate("/login");
-            localStorage.clear();
+            userLogout()
           }}
         >
           {" "}

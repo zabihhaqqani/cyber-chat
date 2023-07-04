@@ -16,58 +16,36 @@ function RightSideBar() {
   const suggestedUsers = dataState?.users
     ?.filter((users) => users.username !== user?.username)
     ?.filter((prevUser) =>
-      user?.following?.filter((user) => user.username === prevUser.username)
+      user?.following?.filter((user) => user.username !== prevUser.username)
     );
-    return (
-      <div className="item-right">
-      <select
-        value={sortBy}
-        onChange={(e) => setSortBy(e.target.value)}
-        name=""
-        id=""
-      >
-        <option value="Trending">Trending</option>
-        <option value="Latest">▲ Latest</option>
-        <option value="Oldest">▼ Oldest</option>
-      </select>
-      <h3>Suggestions for you</h3>
+
+  return (
+    <div className="item-right">
       <div>
+        <h3>Suggestions for you</h3>
+
         {suggestedUsers?.map((user) => {
           const { _id, username } = user;
           return (
             <div key={_id}>
               <li>{username}</li>
-            
-              {   console.log(userFollowed(dataState?.users, _id))}
+              {/* {   console.log(userFollowed(dataState?.users, _id))} */}
               <button
                 onClick={() => {
-                  if(userFollowed(dataState?.users,_id)){
-
-                    unFollowUserHandler(_id, authState?.token, dataDispatch);
-                  }else {
-                    followUserHandler(_id, authState?.token, dataDispatch);
+                  if (authState?.token) {
+                    if (userFollowed(dataState?.users, _id)) {
+                      unFollowUserHandler(_id, authState?.token, dataDispatch);
+                    } else {
+                      followUserHandler(_id, authState?.token, dataDispatch);
+                    }
+                  } else {
+                    // toast.error("Please login to follow");
+                    // navigate("/login");
                   }
-
                 }}
-              >{userFollowed(dataState?.users,_id)?"unfollow":"follow"}</button>
-
-              {/* {userFollowed(dataState?.users, _id) ? (
-                <button
-                  onClick={() => {
-                    unFollowUserHandler(_id, authState?.token, dataDispatch);
-                  }}
-                >
-                  Unfollow
-                </button>
-              ) : (
-                <button
-                  onClick={() => {
-                    followUserHandler(_id, authState?.token, dataDispatch);
-                  }}
-                >
-                  Follow
-                </button>
-              )} */}
+              >
+                {userFollowed(dataState?.users, _id) ? "Following" : "Follow"}
+              </button>
             </div>
           );
         })}

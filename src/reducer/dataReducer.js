@@ -5,6 +5,11 @@ const dataReducer = (state,action) => {
         ...state,
         posts: action.payload,
       };
+    case "EDIT_POST":
+      return {
+        ...state,
+        posts: action.payload,
+      };
     case "SET_USERS":
       return {
         ...state,
@@ -13,18 +18,20 @@ const dataReducer = (state,action) => {
     case "UPDATE_USERS":
       return {
         ...state,
-        users: state?.users?.map(user=>user._id === action.payload._id ? action.payload : user) 
+        users: state?.users?.map((user) =>
+          user._id === action.payload._id ? action.payload : user
+        ),
       };
     case "CREATE_NEW_POST":
       return {
         ...state,
         posts: action.payload,
       };
-      case "DELETE_POST":
-        return {
-          ...state,
-          posts:action.payload,
-        }
+    case "DELETE_POST":
+      return {
+        ...state,
+        posts: action.payload,
+      };
     case "SET_BOOKMARKS":
       return {
         ...state,

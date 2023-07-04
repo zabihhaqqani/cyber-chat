@@ -23,6 +23,16 @@ const DataProvider = ({ children }) => {
   };
   const [dataState, dataDispatch] = useReducer(dataReducer, initialState);
 
+  const getUsers = async () => {
+    try {
+      const { status, data } = await axios.get("/api/users");
+      if (status === 200) {
+        dataDispatch({ type: "SET_USERS", payload: data?.users });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const getUserPosts = async () => {
     try {
       const { status, data } = await axios.get("/api/posts");
@@ -33,16 +43,6 @@ const DataProvider = ({ children }) => {
       console.error(error);
     }
   };
-    const getUsers = async () => {
-      try {
-        const { status, data } = await axios.get("/api/users");
-        if (status === 200) {
-          dataDispatch({ type: "SET_USERS", payload: data?.users });
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
 
   const getAllBookmarks = async () => {
     try {
@@ -64,12 +64,11 @@ const DataProvider = ({ children }) => {
   useEffect(() => {
     if(authState?.token){
 
+      getUsers();
       getUserPosts()
       getAllBookmarks();
-      getUsers();
     }
   }, [authState?.token]);
-    console.log(dataState?.users);
 
   return (
     <DataContext.Provider

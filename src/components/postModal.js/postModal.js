@@ -20,6 +20,7 @@ const PostModal = () => {
       console.error(error);
     }
   };
+  
   return (
     <div>
       {" "}

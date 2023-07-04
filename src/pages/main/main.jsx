@@ -7,7 +7,7 @@ import { sortedPosts } from "../../utils/sortedPosts";
 import PostModal from "../../components/postModal.js/postModal";
 
 function MainPage() {
-  const { dataState, dataDispatch ,sortBy} = useDataContext();
+  const { dataState, dataDispatch ,sortBy,setSortBy} = useDataContext();
   const {authState} = useAuthContext()
 
   const userLoggedIn = dataState?.users?.find(user=>user.username === authState?.user?.username)
@@ -21,10 +21,21 @@ function MainPage() {
 
 
   const filteredPosts = sortedPosts(followedUserPosts, sortBy);
+  
   return (
     <div className="item-home">
       <div>
-        <PostModal/>
+        <PostModal />
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+          name=""
+          id=""
+        >
+          <option value="Trending">Trending</option>
+          <option value="Latest">▲ Latest</option>
+          <option value="Oldest">▼ Oldest</option>
+        </select>
         {filteredPosts?.map((post) => {
           return <PostCard key={post._id} post={post} />;
         })}
