@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/Home/Home";
 import Explore from "./pages/explore/explore";
@@ -9,6 +9,7 @@ import RequiresAuth from "./Auth/requireAuth";
 import { SignUp } from "./pages/signup/signup";
 
 function App() {
+  let { postId } = useParams();
   return (
     <div className="App">
       <Routes>
@@ -45,7 +46,8 @@ function App() {
             </RequiresAuth>
           }
         />
-        <Route path="/signup" element={<SignUp/>}/>
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/post/:id" element={<RequiresAuth></RequiresAuth>} />
       </Routes>
     </div>
   );

@@ -14,6 +14,7 @@ import EditPostModal from "../editPostModal/editPostModal";
 import userFollowed from "../../utils/userFollowed";
 import unFollowUserHandler from "../../utils/unFollowUserHandler";
 import followUserHandler from "../../utils/followUserHandler";
+import { useNavigate } from "react-router-dom";
 
 function PostCard({ post }) {
   const { dataDispatch, dataState } = useDataContext();
@@ -32,7 +33,7 @@ function PostCard({ post }) {
   const [showComments, setShowComments] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-
+  const navigate = useNavigate()
   const isliked = () =>
     likes?.likedBy?.filter(({ _id }) => _id === authState?.user?._id)
       ?.length !== 0;
@@ -121,9 +122,9 @@ function PostCard({ post }) {
             ></i>
           )}
         </div>
-        <p className="post-card-content">{content}</p>
+        <p className="post-card-content" onClick={()=>navigate(`/post/${_id}`)}>{content}</p>
         <div className="img-container">
-          <img className="media-img" src={mediaURL} alt="" />
+          <img className="media-img" src={mediaURL} alt="img" />
         </div>
         <div className="card-icons-container">
           <div>

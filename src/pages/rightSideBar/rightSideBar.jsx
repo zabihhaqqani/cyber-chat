@@ -4,11 +4,12 @@ import { useAuthContext } from "../../context/authContext";
 import followUserHandler from "../../utils/followUserHandler";
 import userFollowed from "../../utils/userFollowed";
 import unFollowUserHandler from "../../utils/unFollowUserHandler";
+import "./rightSideBar.css";
 
 function RightSideBar() {
   const { sortBy, setSortBy, dataState, dataDispatch } = useDataContext();
   const { authState } = useAuthContext();
-
+  const [searchTerm, setSearchTerm] = useState("");
   const user = dataState?.users?.find(
     (user) => user?.username === authState?.user?.username
   );
@@ -19,9 +20,31 @@ function RightSideBar() {
       user?.following?.filter((user) => user.username !== prevUser.username)
     );
 
+  const filteredSearch = dataState?.users?.filter(({ username }) =>
+    username.includes(searchTerm.toLowerCase())
+  );
+  
   return (
     <div className="item-right">
       <div>
+        <div>
+          <input
+            placeholder="Search User"
+            className="search-user"
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <div className="results-output">
+          {searchTerm
+            ? filteredSearch?.map(({ _id, username }) => (
+                <p key={_id}>
+                  {username} 
+                </p>
+              ))
+            : ""}
+        </div>
         <h3>Suggestions for you</h3>
 
         {suggestedUsers?.map((user) => {

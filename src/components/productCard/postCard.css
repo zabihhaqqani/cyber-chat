@@ -82,3 +82,11 @@
 .options-container p:hover{
     cursor: pointer;
 }
+
+.comments-container{
+    transition: 1s;
+}
+
+.post-card-content:hover{
+    cursor: pointer;
+}
