@@ -1,0 +1,11 @@
+.sort-selector{
+    border-radius: 5px;
+    padding: 0.5rem;
+    /* border: none; */
+}
+
+.sort-container{
+    display: flex;
+    justify-content: space-around;
+    line-height: 40px;
+}

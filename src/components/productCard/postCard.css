@@ -1,7 +1,7 @@
 .avatar {
   display: inline-block;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   /* overflow: hidden; */
 }
@@ -12,36 +12,34 @@
   /* object-fit: cover; */
 }
 .post-card{
-    width: 550px;
+    width: 50vw;
+    /* width: 500px; */
     display: flex;
     flex-direction: column;
     border: none;
     border-radius: 5px;
     margin: 1rem;
     background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 
 .profile-card{
     display: flex;
     /* padding: 0.5rem; */
     margin: 1rem;
-    /* justify-content: space-around; */
+    justify-content: space-between;
 }
-.profile-card p {
-    padding-left: 0.5rem;
-}
+
 
 .profile-card .user-name{
-    position: relative ;
-    top: 25px;
-    right: 255px;
-    padding-left: 0rem;
-
+    text-align: left;
+    padding-top: 0.2rem 0rem;
 }
 .post-card-content{
     text-align: left;
-    margin: 1rem ;
-    margin-top: 0rem;
+    margin: 0rem 1rem ;
+    /* margin-top: 0rem; */
+
 }
 /* sdgfd */
 .img-container{
@@ -58,27 +56,34 @@
 }
 .card-icons-container{
     display: flex;
-    justify-content: left;
-    /* padding-left: 1rem; */
+    justify-content: space-between;
+    padding: 0.5rem 0rem;
+    padding-right: 1rem;
 }
 
 .card-icons-container i {
-    padding-left: 1rem;
-    padding-bottom: 1rem;
-    padding-top: 0.5rem;
+   padding: 1rem 1.5rem;
+   padding-right: 0.5rem;
 }
 
 .options-container{
-    background-color: black;
+    /* background-color: black; */
     display: flex;
     flex-direction: column;
+    color: black;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 0.5rem;
+
+}
+
+.fa-ellipsis{
     
 }
 
-.options-container p{
-    color: white;
+.dot-icon{
+    display: flex;
+    align-self: right;
 }
-
 .options-container p:hover{
     cursor: pointer;
 }
@@ -87,4 +92,16 @@
 
 .post-card-content:hover{
     cursor: pointer;
+}
+
+.name-container{
+   margin-right: 1rem;
+
+}
+
+.date{
+    font-size: x-small;
+    text-align: left;
+    padding-right: 5rem;
+    padding-top: 0.1rem;
 }

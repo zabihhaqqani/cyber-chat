@@ -7,14 +7,16 @@
 }
 .post-container{
     display: flex;
-    justify-content: space-around;
+    justify-content: right;
 }
 .post-btn{
     padding: 0.5rem;
-    /* border: none; */
+    border: none;
     background-color: black;
     color: white;
     text-align: right;
+    margin: 0.5rem;
+    border-radius: 5px;
 }
 
 .post-btn:hover{

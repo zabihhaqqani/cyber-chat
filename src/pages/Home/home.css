@@ -1,26 +1,27 @@
-.home-page-container{
-    display: flex;
-    
+.home-page-container {
+  display: flex;
 }
-.item-home{
-     flex: 1.75;
+.item-home {
+  flex: 0.5;
   /* background-color: rgb(223, 218, 218); */
   text-align: center;
   padding: 20px;
   display: flex;
   justify-content: center;
-  height: 100%;
+  align-items: center;
+  /* height: 100%; */
 }
 
-.item-right{
-flex: 0.5;
-  /* background-color: red; */
+.item-right {
+  flex: 0.5;
   text-align: center;
   padding: 20px;
+  display: flex;
+  justify-content: center;
 }
 
-.item-left{
-     flex: 0.5;
+.item-left {
+  flex: 0.5;
   /* background-color: red; */
   text-align: center;
   padding: 20px;

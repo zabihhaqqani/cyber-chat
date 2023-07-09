@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDataContext } from "../../context/dataContext";
 import { useAuthContext } from "../../context/authContext";
 import followUserHandler from "../../utils/followUserHandler";
@@ -25,7 +25,11 @@ function RightSideBar() {
   const filteredSearch = dataState?.users?.filter(({ username }) =>
     username?.includes(searchTerm?.toLowerCase())
   );
-  
+ 
+  const handleClearClick = () => {
+    setSearchTerm('')
+  }
+
   return (
     <div className="item-right">
       <div>
@@ -37,25 +41,36 @@ function RightSideBar() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
+          {searchTerm && <span className="clear-icon" onClick={handleClearClick}>
+            &#10006;
+          </span>}
+         
         </div>
-        <div className="results-output">
+        <div className="results">
           {searchTerm
-            ? filteredSearch?.map(({ _id, username }) => (
-                <p onClick={()=>navigate(`/user/${username}`)} key={_id}>
-                  {username} 
-                </p>
+            ? filteredSearch?.map(({ _id, username,firstName,lastName,avatar }) => (
+              <div key={_id} className="individual-user">
+                <img onClick={() => navigate(`/user/${username}`)} className="avatar" src={avatar} alt="avatar" />
+                <div>
+                  <li onClick={() => navigate(`/user/${username}`)}>{firstName ?? "no users found"} {lastName}</li>
+                  <li onClick={() => navigate(`/user/${username}`)}>@{username}</li>
+                </div>
+               </div>
               ))
             : ""}
         </div>
+        <ul className="suggested-users">
         <h3>Suggested Users</h3>
-
         {suggestedUsers?.map((user) => {
-          const { _id, username } = user;
+          const { _id, username, firstName, lastName, avatar } = user;
           return (
-            <div key={_id}>
-              <li>{username}</li>
-              {/* {   console.log(userFollowed(dataState?.users, _id))} */}
-              <button className="btn"
+            <div className="individual-user" key={_id}>
+              <img onClick={() => navigate(`/user/${username}`)} className="avatar" src={avatar} alt="avatar" />
+              <div>
+                <li onClick={() => navigate(`/user/${username}`)}>{firstName} {lastName}</li>
+                <li onClick={() => navigate(`/user/${username}`)}>@{username}</li>
+              </div>
+              <button className="suggested-btn"
                 onClick={() => {
                   if (authState?.token) {
                     if (userFollowed(dataState?.users, _id)) {
@@ -67,13 +82,15 @@ function RightSideBar() {
                     // toast.error("Please login to follow");
                     // navigate("/login");
                   }
-                }}
+                }
+                }
               >
                 {userFollowed(dataState?.users, _id) ? "UnFollow" : "Follow"}
               </button>
             </div>
           );
         })}
+        </ul>
       </div>
     </div>
   );

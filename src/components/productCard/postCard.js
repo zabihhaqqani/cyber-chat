@@ -66,6 +66,7 @@ function PostCard({ post, showComments }) {
   return (
     <div>
       <div className="post-card">
+        
         <div className="profile-card">
           <img
             onClick={() => {
@@ -78,16 +79,20 @@ function PostCard({ post, showComments }) {
             alt="Avatar"
             className="avatar"
           />{" "}
+
+          <div className="name-container">
           <p>
             <strong>{userData?.firstName}</strong>
             <strong>{userData?.lastName}</strong>
             {/* {dataState?.users?.find(user=>user.username===username)} */}
             {/* <strong>{username} </strong> */}
           </p>
-          <p>
-            <strong>{moment(createdAt).format("LL")}</strong>
-          </p>
           <p className="user-name">@{username}</p>
+          </div>
+            <p className="date">
+            {moment(createdAt).format("LL")}
+          </p>
+          
           {delteablePosts ? (
             <h4 onClick={() => setShowOptions(!showOptions)}>
               {showOptions && (
@@ -104,38 +109,47 @@ function PostCard({ post, showComments }) {
               )}
             </h4>
           ) : (
-            <button
-              onClick={(e) => {
-                if (userFollowed(dataState?.users, userData?._id)) {
-                  unFollowUserHandler(
-                    userData?._id,
-                    authState?.token,
-                    dataDispatch
-                  );
-                } else {
-                  followUserHandler(
-                    userData?._id,
-                    authState?.token,
-                    dataDispatch
-                  );
-                }
-              }}
-            >
-              {userFollowed(dataState?.users, userData?._id)
-                ? "UnFollow"
-                : "Follow"}
-            </button>
+            <div>
+                {showOptions && <button
+                  onClick={(e) => {
+                    if (userFollowed(dataState?.users, userData?._id)) {
+                      unFollowUserHandler(
+                        userData?._id,
+                        authState?.token,
+                        dataDispatch
+                      );
+                      setShowOptions(!showOptions)
+                    } else {
+                      followUserHandler(
+                        userData?._id,
+                        authState?.token,
+                        dataDispatch
+
+                      );
+                      setShowOptions(!showOptions)
+                    }
+                  }}
+                >
+                  {userFollowed(dataState?.users, userData?._id)
+                    ? "UnFollow"
+                    : "Follow"}
+                </button> }
+                
+                </div>
+            
           )}
+          <div className="dot-icon">
           {!showOptions && (
             <i
               className="fa-solid fa-ellipsis"
               onClick={(e) => {
-                // e.stopPropagation();
                 setShowOptions(!showOptions);
               }}
             ></i>
           )}
+          </div>
         </div>
+
         <p
           className="post-card-content"
           onClick={() => navigate(`/post/${_id}`)}
@@ -145,6 +159,7 @@ function PostCard({ post, showComments }) {
         <div className="img-container">
           <img className="media-img" src={mediaURL} alt="img" />
         </div>
+        <hr />
         <div className="card-icons-container">
           <div>
             <i
@@ -163,6 +178,13 @@ function PostCard({ post, showComments }) {
             ></i>{" "}
             <span>{likes?.likeCount}</span>
           </div>
+          <div>
+            <i
+              onClick={() => navigate(`/post/${_id}`)}
+              className="far fa-comment fa-lg"
+            ></i>
+            {comments?.length}
+          </div>
           {bookmarkedPost ? (
             <i
               onClick={() => {
@@ -178,11 +200,7 @@ function PostCard({ post, showComments }) {
               className="far fa-bookmark fa-lg"
             ></i>
           )}
-          <i
-            onClick={() => navigate(`/post/${_id}`)}
-            className="far fa-comment fa-lg"
-          ></i>
-          {comments?.length}
+
           <i
             onClick={() => navigator.clipboard.writeText(window.location.href)}
             className="fas fa-share fa-lg"

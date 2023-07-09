@@ -5,8 +5,6 @@ import girl from "../productCard/girl-2.png";
 
 const EditProfileModal = ({ data, token, dataDispatch, closeModal }) => {
   const [editedProfile, setEditedProfile] = useState({
-    firstName: data?.firstName,
-    lastName: data?.lastName,
     bio: data?.bio,
     website: data?.website
   });
@@ -26,32 +24,18 @@ const EditProfileModal = ({ data, token, dataDispatch, closeModal }) => {
           alt="Avatar"
           className="avatar"
         />{" "}
+        
         <input
-          type="text"
-          name="firstName"
+          required
           onChange={handleInputChange}
-          value={editedProfile?.firstName}
-        />
-        <input
-          type="text"
-          onChange={handleInputChange}
-          name="lastName"
-          value={editedProfile?.lastName}
+          value={editedProfile?.bio}
+          name="bio"
         />
         <input
           onChange={handleInputChange}
           name="website"
           value={editedProfile?.website}
           type="text" />
-        <textarea
-          required
-          onChange={handleInputChange}
-          value={editedProfile?.bio}
-          name="bio"
-          id=""
-          cols="40"
-          rows="5"
-        ></textarea>
         <button
           onClick={() => editUserHandler(token, dataDispatch, editedProfile)}
           className="save-button"

@@ -5,6 +5,7 @@ import { createPostHandler } from "../../utils/createPostHandler";
 import { useAuthContext } from "../../context/authContext";
 import { sortedPosts } from "../../utils/sortedPosts";
 import PostModal from "../../components/postModal.js/postModal";
+import "./main.css"
 
 function MainPage() {
   const { dataState, dataDispatch ,sortBy,setSortBy} = useDataContext();
@@ -26,7 +27,10 @@ function MainPage() {
     <div className="item-home">
       <div>
         <PostModal />
+        <div className="sort-container">
+        <h3>{sortBy} Posts</h3>
         <select
+          className="sort-selector"
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
           name=""
@@ -36,6 +40,7 @@ function MainPage() {
           <option value="Latest">▲ Latest</option>
           <option value="Oldest">▼ Oldest</option>
         </select>
+        </div>
         {filteredPosts?.map((post) => {
           return <PostCard key={post._id} post={post} showComments={false} />;
         })}

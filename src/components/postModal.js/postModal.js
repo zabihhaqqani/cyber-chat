@@ -45,7 +45,7 @@ const PostModal = () => {
               name=""
               id=""
               cols="40"
-              rows="10"
+              rows="6"
             ></textarea>
           </div>
         </div>
@@ -53,15 +53,11 @@ const PostModal = () => {
           <div>
             {/* <i className="fa-regular fa-image" onClick={imageSelectHandler}></i> */}
           </div>
-          {postContent === "" ? (
-            <button style={{ padding: "0.5rem" }} disabled>
+          
+            <button  disabled={postContent==="" ? true : false} onClick={() => postBtnHandler()} className="post-btn">
               POST
             </button>
-          ) : (
-            <button onClick={() => postBtnHandler()} className="post-btn">
-              POST
-            </button>
-          )}
+          
         </div>
       </div>
     </div>

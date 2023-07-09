@@ -19,6 +19,8 @@ export const users = [
     updatedAt: formatDate(),
     bookmarks: [],
     avatar: "https://i.pravatar.cc/150?img=13",
+    backgroundImg:
+      "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68",
   },
   {
     _id: uuid(),
@@ -33,6 +35,8 @@ export const users = [
     updatedAt: formatDate(),
     bookmarks: [],
     avatar: "https://i.pravatar.cc/150?img=11",
+    backgroundImg:
+      "https://fastly.picsum.photos/id/20/3670/2462.jpg?hmac=CmQ0ln-k5ZqkdtLvVO23LjVAEabZQx2wOaT4pyeG10I",
   },
 
   {
@@ -48,6 +52,8 @@ export const users = [
     updatedAt: formatDate(),
     bookmarks: [],
     avatar: "https://i.pravatar.cc/150?img=12",
+    backgroundImg:
+      "https://fastly.picsum.photos/id/24/4855/1803.jpg?hmac=ICVhP1pUXDLXaTkgwDJinSUS59UWalMxf4SOIWb9Ui4",
   },
   {
     _id: uuid(),
@@ -62,6 +68,8 @@ export const users = [
     updatedAt: formatDate(),
     bookmarks: [],
     avatar: "https://i.pravatar.cc/150?img=38",
+    backgroundImg:
+      "https://fastly.picsum.photos/id/26/4209/2769.jpg?hmac=vcInmowFvPCyKGtV7Vfh7zWcA_Z0kStrPDW3ppP0iGI",
   },
 
   {
@@ -77,5 +85,7 @@ export const users = [
     updatedAt: formatDate(),
     bookmarks: [],
     avatar: "https://i.pravatar.cc/150?img=58",
+    backgroundImg:
+      "https://fastly.picsum.photos/id/28/4928/3264.jpg?hmac=GnYF-RnBUg44PFfU5pcw_Qs0ReOyStdnZ8MtQWJqTfA",
   },
 ];

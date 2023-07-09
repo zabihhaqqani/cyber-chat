@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/authContext";
 
 function SideBar() {
-  const {userLogout} = useAuthContext()
+  const {userLogout,authState} = useAuthContext()
+
   const navigate = useNavigate();
   return (
     <div className="sidebar-container item-left">
@@ -23,6 +24,11 @@ function SideBar() {
           {" "}
           <i className="fa-solid fa-heart fa-lg"></i>
           Liked Posts
+        </li>
+        <li onClick={() => navigate(`/user/${authState?.user?.username}`)}>
+          {" "}
+          <i className="fas fa-user fa-lg"></i>
+          Profile
         </li>
         <li
           onClick={() => {

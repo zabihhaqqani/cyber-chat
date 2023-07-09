@@ -8,16 +8,26 @@
 }
 
 body{
-  background-color: #F5F5F7;
+  background-color: white;
 }
 
-.btn{
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
 }
+
+/* Background color of the scrollbar track */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+/* Color of the scrollbar handle */
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+
+/* On hover, color of the scrollbar handle */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+

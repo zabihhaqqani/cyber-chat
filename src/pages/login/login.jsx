@@ -81,12 +81,12 @@ const Login = () => {
             >
               Login
             </button>
-            <button className="add-to-cart-btn" onClick={loginAsGuest}>
+            <button className="login-btn" onClick={loginAsGuest}>
               Login as Guest
             </button>
             <button
               style={{ backgroundColor: "" }}
-              className="add-to-cart-btn"
+              className="login-btn"
               onClick={() => navigate("/signup")}
             >
               Create New Account

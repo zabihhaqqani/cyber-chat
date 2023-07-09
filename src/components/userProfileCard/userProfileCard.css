@@ -1,3 +1,35 @@
-.profile-card-container{
-    background-color: white;
+.profile-card-container {
+  background-color: white;
+}
+
+.user-profile-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+
+.user-avatar {
+  width: 120px;
+  border-radius: 50%;
+}
+
+.user-profile-name-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  padding-bottom: 0rem;
+}
+
+.user-profile-name-container p {
+  margin: 0.5rem 0rem;
+}
+
+.user-profile-metrics {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+}
+.bg{
+height: 100px;
 }

@@ -53,7 +53,6 @@ const DataProvider = ({ children }) => {
       if (status === 200) {
         dataDispatch({ type: "SET_BOOKMARKS", payload: data?.bookmarks });
       }
-      console.log(status)
     } catch (e) {
       console.error(e);
     }

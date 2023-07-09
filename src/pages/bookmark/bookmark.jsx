@@ -12,6 +12,7 @@ const BookMarks = () => {
   const bookmarkedPosts = (id) =>
     dataState?.posts?.filter((post) => post._id === id)[0];
 
+    
   return (
     <div>
       <Navbar />
@@ -19,11 +20,12 @@ const BookMarks = () => {
         <SideBar />
         <div className="item-home">
           <div>
-            {dataState?.bookmarks?.map((post) => {
+            {bookmarkedPosts?.length > 0 ?<div>{dataState?.bookmarks?.map((post) => {
               return (
                 <PostCard key={post._id} post={bookmarkedPosts(post._id)} />
               );
-            })}
+            })}</div> : <h3>No BookMarks Yet!</h3>}
+            
           </div>
         </div>
         <RightSideBar />

@@ -40,7 +40,7 @@ export function SignUp() {
     <>
       <div className="login-form-contianer">
         <form className="login-form" onSubmit={(e) => signUpHandler(e)}>
-          <h2>SignUp</h2>
+          <h2 style={{textAlign:"center",margin:"1rem"}}>SignUp</h2>
           <label htmlFor="firstName">First Name:</label>
           <input
             type="text"
@@ -126,7 +126,7 @@ export function SignUp() {
           >
             {showPassword2 ? "hide" : "show"}
           </span>
-          <button type="submit" className="add-to-cart-btn">
+          <button type="submit" className="login-btn">
             Signup
           </button>
           <p className="have-account" onClick={() => navigate("/login")}>
