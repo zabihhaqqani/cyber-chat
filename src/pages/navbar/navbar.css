@@ -12,7 +12,7 @@
 .logo-name {
   font-size: x-large;
   margin: 1rem;
-  color: #00a6fb;
+  color: var(--primarycolor);
 }
 .search-user {
   padding: 10px 35px;

@@ -22,8 +22,10 @@
 
 }
 .sidebar-items li:hover{
-    background-color: rgb(255, 255, 255);
+    background-color: var(--primarycolor);
     cursor: pointer;
+    color: white;
     transition: 0.25s;
     /* padding: 1rem; */
 }
+

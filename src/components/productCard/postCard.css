@@ -12,8 +12,8 @@
   /* object-fit: cover; */
 }
 .post-card{
-    width: 50vw;
-    /* width: 500px; */
+    /* width: 50vw; */
+    width: 500px;
     display: flex;
     flex-direction: column;
     border: none;

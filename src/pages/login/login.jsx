@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./login.css"
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/authContext";
+import bgImg from "./loginBg.svg"
 
 const Login = () => {
     const navigate = useNavigate();
@@ -38,10 +39,13 @@ const Login = () => {
   return (
     <div>
       <div className="login-container">
-        <div className="login-left-bar">Left Image</div>
+        <div className="login-left-bar">
+          
+          <img className="background-login-img" src={bgImg} alt="bg" />
+        </div>
         <div className="login-right-bar">
-          <form className="login-form">
-            <h3>Log In</h3>
+          <form className="login-form-main">
+            <h3 style={{textAlign:"center"}}>Cyber Chat</h3>
             <label htmlFor="email">User name: </label>
             <input
               id="username"
@@ -75,8 +79,8 @@ const Login = () => {
               {showPassword ? "hide" : "show"}
             </span>
             <button
-              style={{ backgroundColor: "blue" }}
-              className="add-to-cart-btn"
+              style={{ backgroundColor: "lightBlue" }}
+              className="login-btn"
               onClick={loginHandler}
             >
               Login
@@ -85,11 +89,10 @@ const Login = () => {
               Login as Guest
             </button>
             <button
-              style={{ backgroundColor: "" }}
-              className="login-btn"
+              className="new-account"
               onClick={() => navigate("/signup")}
             >
-              Create New Account
+              Create New Account  ▶
             </button>
           </form>
         </div>

@@ -70,7 +70,7 @@ function RightSideBar() {
                 <li onClick={() => navigate(`/user/${username}`)}>{firstName} {lastName}</li>
                 <li onClick={() => navigate(`/user/${username}`)}>@{username}</li>
               </div>
-              <button className="suggested-btn"
+              <button className="follow-btn"
                 onClick={() => {
                   if (authState?.token) {
                     if (userFollowed(dataState?.users, _id)) {

@@ -27,14 +27,27 @@ const UserProfileCard = ({ userProfile }) => {
   return (
     <div className="post-card">
       <div className="bg">
-        <img src={userProfile?.backgroundImg} alt="bg" height="200vh" width="100%"  />
+        <img
+          src={userProfile?.backgroundImg ?? "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68"}
+          alt="bg"
+          height="200vh"
+          width="100%"
+        />
       </div>
       <div className="user-profile-header">
-        <img src={userProfile?.avatar} alt="avatar" className="user-avatar" />
+        <img src={userProfile?.avatar ?? "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686688962/tech-social/blank-profile-picture-973460_1280_d1qnjd.png"} alt="avatar" className="user-avatar" />
         {userLoggedIn ? (
-          <button onClick={() => setModalState(true)}>Edit Profile</button>
+          <button
+            style={{ height: "50%" }}
+            className="follow-btn"
+            onClick={() => setModalState(true)}
+          >
+            Edit Profile
+          </button>
         ) : (
           <button
+            style={{ height: "50%" }}
+            className="follow-btn"
             onClick={(e) => {
               if (userFollowed(dataState?.users, userProfile?._id)) {
                 unFollowUserHandler(
@@ -59,23 +72,33 @@ const UserProfileCard = ({ userProfile }) => {
       </div>
 
       <div className="user-profile-name-container">
-        <p><strong>{userProfile?.firstName} {userProfile?.lastName}</strong></p>
+        
+        <p>
+          <strong>
+            {userProfile?.firstName} {userProfile?.lastName}
+          </strong>
+        </p>
 
         <p>@{userProfile?.username}</p>
 
-        <p>
-          <strong>Bio: </strong>
-          {userProfile?.bio}
-        </p>
-        <p>
-          <a
-            href={userProfile?.website}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {userProfile?.website}
-          </a>
-        </p>
+        {userProfile?.bio ? (
+          <p>
+            <strong>Bio: </strong>
+            {userProfile?.bio}
+          </p>
+        ):''}
+        {userProfile?.website ? (
+          <p>
+            <a
+              href={userProfile?.website}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {userProfile?.website}
+            </a>
+          </p>
+        ) : ''}
+        
         <p>Joined {moment(userProfile?.createdAt).format("LL")}</p>
       </div>
 
@@ -85,12 +108,12 @@ const UserProfileCard = ({ userProfile }) => {
           Posts
         </p>
         <p>
-        <strong>{userProfile?.following?.length} </strong>
-        following
+          <strong>{userProfile?.following?.length} </strong>
+          following
         </p>
         <p>
-        <strong>{userProfile?.followers?.length} </strong>
-        followers
+          <strong>{userProfile?.followers?.length} </strong>
+          followers
         </p>
       </div>
       {/* <a href="zabihhaqqani@netlify.app">zabihhaqqani@netlify.app</a> */}

@@ -38,7 +38,7 @@ export function SignUp() {
   };
   return (
     <>
-      <div className="login-form-contianer">
+      <div className="sign-form-contianer">
         <form className="login-form" onSubmit={(e) => signUpHandler(e)}>
           <h2 style={{textAlign:"center",margin:"1rem"}}>SignUp</h2>
           <label htmlFor="firstName">First Name:</label>

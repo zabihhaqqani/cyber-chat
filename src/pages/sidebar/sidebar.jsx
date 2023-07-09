@@ -6,12 +6,13 @@ import { useAuthContext } from "../../context/authContext";
 function SideBar() {
   const {userLogout,authState} = useAuthContext()
 
+
   const navigate = useNavigate();
   return (
     <div className="sidebar-container item-left">
       <ul className="sidebar-items">
         <li onClick={() => navigate("/")}>
-          <i className="fa-solid fa-house fa-lg"></i>Home
+          <i style={{}} className="fa-solid fa-house fa-lg"></i>Home
         </li>
         <li onClick={() => navigate("/explore")}>
           {" "}
