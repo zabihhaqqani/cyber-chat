@@ -5,15 +5,17 @@ import followUserHandler from "../../utils/followUserHandler";
 import userFollowed from "../../utils/userFollowed";
 import unFollowUserHandler from "../../utils/unFollowUserHandler";
 import "./rightSideBar.css";
+import { useNavigate } from "react-router-dom";
 
 function RightSideBar() {
   const { sortBy, setSortBy, dataState, dataDispatch } = useDataContext();
   const { authState } = useAuthContext();
   const [searchTerm, setSearchTerm] = useState("");
+
   const user = dataState?.users?.find(
     (user) => user?.username === authState?.user?.username
   );
-
+    const navigate = useNavigate()
   const suggestedUsers = dataState?.users
     ?.filter((users) => users.username !== user?.username)
     ?.filter((prevUser) =>
@@ -21,7 +23,7 @@ function RightSideBar() {
     );
 
   const filteredSearch = dataState?.users?.filter(({ username }) =>
-    username.includes(searchTerm.toLowerCase())
+    username?.includes(searchTerm?.toLowerCase())
   );
   
   return (
@@ -39,13 +41,13 @@ function RightSideBar() {
         <div className="results-output">
           {searchTerm
             ? filteredSearch?.map(({ _id, username }) => (
-                <p key={_id}>
+                <p onClick={()=>navigate(`/user/${username}`)} key={_id}>
                   {username} 
                 </p>
               ))
             : ""}
         </div>
-        <h3>Suggestions for you</h3>
+        <h3>Suggested Users</h3>
 
         {suggestedUsers?.map((user) => {
           const { _id, username } = user;
@@ -53,7 +55,7 @@ function RightSideBar() {
             <div key={_id}>
               <li>{username}</li>
               {/* {   console.log(userFollowed(dataState?.users, _id))} */}
-              <button
+              <button className="btn"
                 onClick={() => {
                   if (authState?.token) {
                     if (userFollowed(dataState?.users, _id)) {
@@ -67,7 +69,7 @@ function RightSideBar() {
                   }
                 }}
               >
-                {userFollowed(dataState?.users, _id) ? "Following" : "Follow"}
+                {userFollowed(dataState?.users, _id) ? "UnFollow" : "Follow"}
               </button>
             </div>
           );

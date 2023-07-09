@@ -17,7 +17,7 @@ import followUserHandler from "../../utils/followUserHandler";
 import { useNavigate } from "react-router-dom";
 import Comments from "../comments/comments";
 
-function PostCard({ post,showComments }) {
+function PostCard({ post, showComments }) {
   const { dataDispatch, dataState } = useDataContext();
 
   const {
@@ -29,15 +29,18 @@ function PostCard({ post,showComments }) {
     mediaURL,
     _id,
     comments,
+    
   } = post;
   const { authState } = useAuthContext();
   const [showOptions, setShowOptions] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const navigate = useNavigate()
-  const isliked = () =>
+  const navigate = useNavigate();
+  const likedPosts = () =>
     likes?.likedBy?.filter(({ _id }) => _id === authState?.user?._id)
       ?.length !== 0;
+
   const delteablePosts = authState?.user?.username === username;
+  const bookmarkedPost = dataState?.bookmarks?.find((item) => item._id === _id)
 
   const editClickHandler = () => {
     setShowOptions(false);
@@ -57,17 +60,29 @@ function PostCard({ post,showComments }) {
   const handleSavePost = (editedContent) => {
     setPostContent(editedContent);
   };
-    const userData = dataState?.users?.find(
-      (user) => user?.username === username
-    );
-
+  const userData = dataState?.users?.find(
+    (user) => user?.username === username
+  );
   return (
     <div>
       <div className="post-card">
         <div className="profile-card">
-          <img src={girl} alt="Avatar" className="avatar" />{" "}
-          <p style={{ textTransform: "capitalize" }}>
-            <strong>{username} </strong>
+          <img
+            onClick={() => {
+              navigate(`/user/${username}`);
+            }}
+            src={
+              userData?.avatar ??
+              "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686688962/tech-social/blank-profile-picture-973460_1280_d1qnjd.png"
+            }
+            alt="Avatar"
+            className="avatar"
+          />{" "}
+          <p>
+            <strong>{userData?.firstName}</strong>
+            <strong>{userData?.lastName}</strong>
+            {/* {dataState?.users?.find(user=>user.username===username)} */}
+            {/* <strong>{username} </strong> */}
           </p>
           <p>
             <strong>{moment(createdAt).format("LL")}</strong>
@@ -98,7 +113,6 @@ function PostCard({ post,showComments }) {
                     dataDispatch
                   );
                 } else {
-
                   followUserHandler(
                     userData?._id,
                     authState?.token,
@@ -108,8 +122,8 @@ function PostCard({ post,showComments }) {
               }}
             >
               {userFollowed(dataState?.users, userData?._id)
-                ? "Following"
-                : "UnFollow"}
+                ? "UnFollow"
+                : "Follow"}
             </button>
           )}
           {!showOptions && (
@@ -122,19 +136,26 @@ function PostCard({ post,showComments }) {
             ></i>
           )}
         </div>
-        <p className="post-card-content" onClick={()=>navigate(`/post/${_id}`)}>{content}</p>
+        <p
+          className="post-card-content"
+          onClick={() => navigate(`/post/${_id}`)}
+        >
+          {content}
+        </p>
         <div className="img-container">
           <img className="media-img" src={mediaURL} alt="img" />
         </div>
         <div className="card-icons-container">
           <div>
             <i
-              className={`${isliked() ? "fa-solid" : "fa-regular"} fa-heart`}
+              className={`${
+                likedPosts() ? "fa-solid" : "fa-regular"
+              } fa-heart fa-lg`}
               onClick={() => {
                 if (!authState?.token) {
                   // toast.error("Please login to proceed!");
                 } else {
-                  isliked()
+                  likedPosts()
                     ? postUnlikeHandler(_id, authState?.token, dataDispatch)
                     : postLikeHandler(_id, authState?.token, dataDispatch);
                 }
@@ -142,7 +163,7 @@ function PostCard({ post,showComments }) {
             ></i>{" "}
             <span>{likes?.likeCount}</span>
           </div>
-          {dataState?.bookmarks?.find((item) => item._id === _id) ? (
+          {bookmarkedPost ? (
             <i
               onClick={() => {
                 removeBookmarkHandler(_id, authState?.token, dataDispatch);
@@ -162,15 +183,16 @@ function PostCard({ post,showComments }) {
             className="far fa-comment fa-lg"
           ></i>
           {comments?.length}
-          <i className="fas fa-share fa-lg"></i>
+          <i
+            onClick={() => navigator.clipboard.writeText(window.location.href)}
+            className="fas fa-share fa-lg"
+          ></i>
         </div>
-
-       
       </div>
 
       {showEditModal && (
         <PostModal post={post} setShowEditModal={setShowEditModal} />
-        )}
+      )}
       <EditPostModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
@@ -180,8 +202,8 @@ function PostCard({ post,showComments }) {
         token={authState?.token}
         dataDispatch={dataDispatch}
         content={content}
-        />
-        {showComments&&<Comments comments={comments}/>} 
+      />
+      {showComments && <Comments comments={comments} />}
     </div>
   );
 }

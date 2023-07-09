@@ -17,9 +17,6 @@ export const editPostHandler = async (
       }
     );
     if (status === 201) {
-        console.log(token)
-        console.log(postId)
-        console.log(content);
       dataDispatch({ type: "EDIT_POST", payload: data?.posts });
     }
   } catch (e) {

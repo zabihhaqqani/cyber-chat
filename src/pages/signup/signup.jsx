@@ -13,6 +13,7 @@ export function SignUp() {
   const [userDetails, setUserDetails] = useState({
     firstName: "",
     lastName: "",
+    username:"",
     email: "",
     password: "",
     confirmPassword: "",
@@ -23,15 +24,16 @@ export function SignUp() {
     if (
       !userDetails?.firstName.trim() ||
       !userDetails?.lastName.trim() ||
+      !userDetails?.username.trim() ||
       !userDetails?.email.trim() ||
       !userDetails?.password.trim() ||
       !userDetails?.confirmPassword.trim()
     ) {
     } else if (userDetails?.password !== userDetails?.confirmPassword) {
-    //   toast.warning("Passwords Do not Match!");
+      alert("Passwords Do not Match!");
     } else {
       userSignup(userDetails);
-    //   toast.success("Sign Up Successful!");
+      //   toast.success("Sign Up Successful!");
     }
   };
   return (
@@ -45,7 +47,7 @@ export function SignUp() {
             id="firstName"
             placeholder="Enter your first name"
             required
-            value={userDetails.firstName}
+            value={userDetails?.firstName}
             onChange={(e) =>
               setUserDetails((data) => ({ ...data, firstName: e.target.value }))
             }
@@ -56,9 +58,20 @@ export function SignUp() {
             id="lastName"
             placeholder="Enter your last name"
             required
-            value={userDetails.lastName}
+            value={userDetails?.lastName}
             onChange={(e) =>
               setUserDetails((data) => ({ ...data, lastName: e.target.value }))
+            }
+          />
+          <label htmlFor="userName">User Name:</label>
+          <input
+            type="text"
+            id="userName"
+            placeholder="Enter username"
+            required
+            value={userDetails?.username}
+            onChange={(e) =>
+              setUserDetails((data) => ({ ...data, username: e.target.value }))
             }
           />
           <label htmlFor="email">Email:</label>
@@ -67,7 +80,7 @@ export function SignUp() {
             id="email"
             placeholder="Enter your email"
             required
-            value={userDetails.email}
+            value={userDetails?.email}
             onChange={(e) =>
               setUserDetails((data) => ({ ...data, email: e.target.value }))
             }
@@ -77,10 +90,10 @@ export function SignUp() {
             type={showPassword ? "text" : "password"}
             id="password"
             required
-            placeholder="***************"
-            minLength="5"
+            placeholder="**********"
+            minLength="8"
             maxLength="10"
-            value={userDetails.password}
+            value={userDetails?.password}
             onChange={(e) =>
               setUserDetails((data) => ({ ...data, password: e.target.value }))
             }
@@ -95,11 +108,11 @@ export function SignUp() {
           <input
             type={showPassword2 ? "text" : "password"}
             id="confirm-password"
-            placeholder="***************"
+            placeholder="**********"
             required
-            minLength="5"
+            minLength="8"
             maxLength="10"
-            value={userDetails.confirmPassword}
+            value={userDetails?.confirmPassword}
             onChange={(e) =>
               setUserDetails((data) => ({
                 ...data,

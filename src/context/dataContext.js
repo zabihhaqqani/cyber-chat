@@ -19,7 +19,6 @@ const DataProvider = ({ children }) => {
     posts: [],
     postLoading: false,
     bookmarks: [],
-    userPost: [],
   };
   const [dataState, dataDispatch] = useReducer(dataReducer, initialState);
 
@@ -46,7 +45,7 @@ const DataProvider = ({ children }) => {
 
   const getAllBookmarks = async () => {
     try {
-      const { data, status } = await axios.get(`api/users/bookmark`, {
+      const { data, status } = await axios.get("/api/users/bookmark", {
         headers: {
           authorization: authState?.token,
         },
@@ -54,6 +53,7 @@ const DataProvider = ({ children }) => {
       if (status === 200) {
         dataDispatch({ type: "SET_BOOKMARKS", payload: data?.bookmarks });
       }
+      console.log(status)
     } catch (e) {
       console.error(e);
     }
@@ -63,7 +63,7 @@ const DataProvider = ({ children }) => {
 
   useEffect(() => {
     if(authState?.token){
-
+      
       getUsers();
       getUserPosts()
       getAllBookmarks();

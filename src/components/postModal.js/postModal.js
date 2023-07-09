@@ -4,12 +4,13 @@ import { useAuthContext } from "../../context/authContext";
 import "./postModal.css";
 import { createPostHandler } from "../../utils/createPostHandler";
 import { useDataContext } from "../../context/dataContext";
+import { useNavigate } from "react-router-dom";
 
 const PostModal = () => {
   const { authState } = useAuthContext();
-  const { dataDispatch } = useDataContext();
+  const { dataDispatch ,dataState} = useDataContext();
   const [postContent, setPostContent] = useState("");
-
+  const navigate = useNavigate()
   const postBtnHandler = async () => {
     try {
       // const response = await media()
@@ -20,13 +21,22 @@ const PostModal = () => {
       console.error(error);
     }
   };
-  
+   const userData = dataState?.users?.find(
+     (user) => user?.username === authState?.user?.username
+   );
   return (
     <div>
       {" "}
       <div className="post-card">
         <div className="profile-card">
-          <img src={girl} alt="Avatar" className="avatar" />{" "}
+          <img
+            onClick={() => {
+              navigate(`/user/${userData?.username}`);
+            }}
+            src={userData?.avatar}
+            alt="Avatar"
+            className="avatar"
+          />{" "}
           <div>
             <textarea
               onChange={(e) => setPostContent(e.target.value)}
@@ -44,7 +54,7 @@ const PostModal = () => {
             {/* <i className="fa-regular fa-image" onClick={imageSelectHandler}></i> */}
           </div>
           {postContent === "" ? (
-            <button style={{padding:"0.5rem"}} disabled>
+            <button style={{ padding: "0.5rem" }} disabled>
               POST
             </button>
           ) : (

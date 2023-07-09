@@ -42,12 +42,12 @@ const Login = () => {
         <div className="login-right-bar">
           <form className="login-form">
             <h3>Log In</h3>
-            <label htmlFor="email">Email: </label>
+            <label htmlFor="email">User name: </label>
             <input
-              id="email"
+              id="username"
               value={userData.username}
-              type="email"
-              placeholder="Enter your email"
+              type="text"
+              placeholder="Enter your username"
               onChange={(e) =>
                 setUserData((data) => ({ ...data, username: e.target.value }))
               }
@@ -59,11 +59,13 @@ const Login = () => {
               id="password"
               value={userData.password}
               type={showPassword ? "text" : "password"}
-              placeholder="******** "
+              placeholder="********"
               onChange={(e) =>
                 setUserData((data) => ({ ...data, password: e.target.value }))
               }
               required
+              minLength="8"
+              maxLength="10"
             />
 
             <span

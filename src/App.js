@@ -8,6 +8,7 @@ import Login from "./pages/login/login";
 import RequiresAuth from "./Auth/requireAuth";
 import { SignUp } from "./pages/signup/signup";
 import { IndividualPostPage } from "./components/individualPost/indivialPost";
+import UserProfilePage from "./components/individualProfilePage/userProfilePage";
 
 function App() {
   return (
@@ -52,6 +53,14 @@ function App() {
           element={
             <RequiresAuth>
               <IndividualPostPage />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/user/:username"
+          element={
+            <RequiresAuth>
+              <UserProfilePage />
             </RequiresAuth>
           }
         />

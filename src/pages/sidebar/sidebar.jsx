@@ -17,7 +17,7 @@ function SideBar() {
           <i className="fa-solid fa-compass fa-lg"></i>Explore
         </li>
         <li onClick={() => navigate("/bookmarks")}>
-          <i className="fa-solid fa-bookmark fa-lg"></i>BookMarks
+          <i className="fa-solid fa-bookmark fa-lg"></i>Bookmarks
         </li>
         <li onClick={() => navigate("/likedposts")}>
           {" "}
@@ -27,11 +27,11 @@ function SideBar() {
         <li
           onClick={() => {
             navigate("/login");
-            userLogout()
+            userLogout();
           }}
         >
           {" "}
-          <i className="fa-solid fa-heart fa-lg"></i>
+          <i className="fas fa-sign-out-alt fa-lg"></i>
           Logout
         </li>
       </ul>

@@ -22,7 +22,7 @@
 
 }
 .sidebar-items li:hover{
-    background-color: whitesmoke;
+    background-color: rgb(255, 255, 255);
     cursor: pointer;
     transition: 0.25s;
     /* padding: 1rem; */

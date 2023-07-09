@@ -8,28 +8,22 @@ import PostCard from "../productCard/postCard";
 import Comments from "../comments/comments";
 
 export function IndividualPostPage() {
-
   const { dataState } = useDataContext();
 
-  let {id} = useParams()
-  const filteredPosts = dataState?.posts?.filter(post=>post._id === id );
-    const comments = filteredPosts?.map((post) => post.comments?.find(data=>data));
-    const [data] = comments
+  let { id } = useParams();
+  const filteredPosts = dataState?.posts?.filter((post) => post._id === id);
 
-console.log(data);
-    return (
+  return (
     <div>
       <Navbar />
       <div className="home-page-container">
         <SideBar />
         <div className="individual">
           {filteredPosts?.map((post) => {
-              return (
-                <PostCard key={post._id} post={post} showComments={true} />
-              );
-            })}
-            
-            {/* <Comments comments={comments}/> */}
+            return <PostCard key={post._id} post={post} showComments={true} />;
+          })}
+
+          {/* <Comments comments={comments}/> */}
         </div>
         <RightSideBar />
       </div>
