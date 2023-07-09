@@ -50,7 +50,7 @@ function RightSideBar() {
           {searchTerm
             ? filteredSearch?.map(({ _id, username,firstName,lastName,avatar }) => (
               <div key={_id} className="individual-user">
-                <img onClick={() => navigate(`/user/${username}`)} className="avatar" src={avatar} alt="avatar" />
+                <img onClick={() => navigate(`/user/${username}`)} className="avatar" src={avatar ?? "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686688962/tech-social/blank-profile-picture-973460_1280_d1qnjd.png"} alt="avatar" />
                 <div>
                   <li onClick={() => navigate(`/user/${username}`)}>{firstName ?? "no users found"} {lastName}</li>
                   <li onClick={() => navigate(`/user/${username}`)}>@{username}</li>
