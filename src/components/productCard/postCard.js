@@ -29,7 +29,7 @@ function PostCard({ post, showComments }) {
     mediaURL,
     _id,
     comments,
-    
+
   } = post;
   const { authState } = useAuthContext();
   const [showOptions, setShowOptions] = useState(false);
@@ -66,7 +66,7 @@ function PostCard({ post, showComments }) {
   return (
     <div>
       <div className="post-card">
-        
+
         <div className="profile-card">
           <img
             onClick={() => {
@@ -81,18 +81,18 @@ function PostCard({ post, showComments }) {
           />{" "}
 
           <div className="name-container">
-          <p>
-            <strong>{userData?.firstName}</strong>
-            <strong>{userData?.lastName}</strong>
-            {/* {dataState?.users?.find(user=>user.username===username)} */}
-            {/* <strong>{username} </strong> */}
-          </p>
-          <p className="user-name">@{username}</p>
+            <p>
+              <strong>{userData?.firstName}</strong>
+              <strong>{userData?.lastName}</strong>
+              {/* {dataState?.users?.find(user=>user.username===username)} */}
+              {/* <strong>{username} </strong> */}
+            </p>
+            <p className="user-name">@{username}</p>
           </div>
-            <p className="date">
+          <p className="date">
             {moment(createdAt).format("LL")}
           </p>
-          
+
           {delteablePosts ? (
             <h4 onClick={() => setShowOptions(!showOptions)}>
               {showOptions && (
@@ -110,43 +110,44 @@ function PostCard({ post, showComments }) {
             </h4>
           ) : (
             <div>
-                {showOptions && <button
-                  onClick={(e) => {
-                    if (userFollowed(dataState?.users, userData?._id)) {
-                      unFollowUserHandler(
-                        userData?._id,
-                        authState?.token,
-                        dataDispatch
-                      );
-                      setShowOptions(!showOptions)
-                    } else {
-                      followUserHandler(
-                        userData?._id,
-                        authState?.token,
-                        dataDispatch
+              {showOptions && <button
+                className="follow-btn"
+                onClick={(e) => {
+                  if (userFollowed(dataState?.users, userData?._id)) {
+                    unFollowUserHandler(
+                      userData?._id,
+                      authState?.token,
+                      dataDispatch
+                    );
+                    setShowOptions(!showOptions)
+                  } else {
+                    followUserHandler(
+                      userData?._id,
+                      authState?.token,
+                      dataDispatch
 
-                      );
-                      setShowOptions(!showOptions)
-                    }
-                  }}
-                >
-                  {userFollowed(dataState?.users, userData?._id)
-                    ? "UnFollow"
-                    : "Follow"}
-                </button> }
-                
-                </div>
-            
+                    );
+                    setShowOptions(!showOptions)
+                  }
+                }}
+              >
+                {userFollowed(dataState?.users, userData?._id)
+                  ? "UnFollow"
+                  : "Follow"}
+              </button>}
+
+            </div>
+
           )}
           <div className="dot-icon">
-          {!showOptions && (
-            <i
-              className="fa-solid fa-ellipsis"
-              onClick={(e) => {
-                setShowOptions(!showOptions);
-              }}
-            ></i>
-          )}
+            {!showOptions && (
+              <i
+                className="fa-solid fa-ellipsis"
+                onClick={(e) => {
+                  setShowOptions(!showOptions);
+                }}
+              ></i>
+            )}
           </div>
         </div>
 
@@ -156,16 +157,16 @@ function PostCard({ post, showComments }) {
         >
           {content}
         </p>
-        <div className="img-container">
-          <img className="media-img" src={mediaURL} alt="img" />
+        <div onClick={() => navigate(`/post/${_id}`)} className="img-container">
+          {mediaURL ? <img className="media-img" src={mediaURL} alt="img" />:''}
+        
         </div>
         <hr />
         <div className="card-icons-container">
           <div>
             <i
-              className={`${
-                likedPosts() ? "fa-solid" : "fa-regular"
-              } fa-heart fa-lg`}
+              className={`${likedPosts() ? "fa-solid" : "fa-regular"
+                } fa-heart fa-lg`}
               onClick={() => {
                 if (!authState?.token) {
                   // toast.error("Please login to proceed!");

@@ -21,7 +21,7 @@ export const posts = [
     comments: [
       {
         _id: "fyjksd_gb3j_37h8_fy7kBW",
-        username: "jack",
+        username: "jackparker",
         text: "Great App!",
       },
       {
@@ -99,7 +99,7 @@ export const posts = [
     comments: [
       {
         _id: "fhy5d8_jr2K_17h8_jAk6BW",
-        username: "zabih",
+        username: "adarshbalika",
         text: "Great Profiles!",
       },
     ],

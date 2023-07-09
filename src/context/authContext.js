@@ -12,6 +12,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -69,12 +71,16 @@ const AuthProvider = ({ children }) => {
     authDispatch({ type: "SET_TOKEN", payload: "" });
   };
   useEffect(() => {
-    if (localStorageData) {
+    if (localStorageData?.user?.username === "adarshbalika") {
       authDispatch({ type: "SET_USER", payload: localStorageData?.user });
       authDispatch({ type: "SET_TOKEN", payload: localStorageData?.token });
       // localStorage.removeItem("userData")
+    }else{
+      userLogout()
     }
   }, []);
+
+console.log();
 
   return (
     <AuthContext.Provider

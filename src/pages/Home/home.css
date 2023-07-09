@@ -2,13 +2,13 @@
   display: flex;
 }
 .item-home {
-  flex: 1.75;
+  flex: 1.5;
   /* background-color: rgb(223, 218, 218); */
   text-align: center;
   padding: 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   /* height: 100%; */
 }
 
