@@ -8,11 +8,13 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 1rem;
 }
-.comments-container p{
+
+.comments-container p {
   padding-left: 1rem;
 }
-.comment-text{
-  background-color: #E5E7EB;
+
+.comment-text {
+  background-color: #e5e7eb;
   margin-left: 0.5rem;
   border-radius: 5px;
   padding: 0.5rem 1rem 1rem 0rem;

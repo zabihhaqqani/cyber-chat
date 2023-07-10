@@ -14,12 +14,29 @@ const Comments = ({ comments }) => {
 
           const { _id, username, text } = data;
           return (
-            <div className='comments-container' key={_id}>
-              {/* {userData?.map(data => (<div key={data?.id}> <img src={data?.avatar} alt="" className='avatar' /></div>))} */}
-              <div>{dataState?.users?.map(data => data?.username === username ? <img key={data?.id} src={data?.avatar ?? "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686688962/tech-social/blank-profile-picture-973460_1280_d1qnjd.png"} alt="avatar" className='avatar' /> : '')}</div>
-              <div className='comment-text'>
-              <p><strong>{username}</strong></p>
-              <p >{text}</p>
+            <div className="comments-container" key={_id}>
+              <div>
+                {dataState?.users?.map((data) =>
+                  data?.username === username ? (
+                    <img
+                      key={data?.id}
+                      src={
+                        data?.avatar ??
+                        "https://fastly.picsum.photos/id/100/150/150.jpg?hmac=uGUauJoHAFEamhXY6HLrXsmhPdapec4KAi8TqFasrQo"
+                      }
+                      alt="avatar"
+                      className="avatar"
+                    />
+                  ) : (
+                    ""
+                  )
+                )}
+              </div>
+              <div className="comment-text">
+                <p>
+                  <strong>{username}</strong>
+                </p>
+                <p>{text}</p>
               </div>
             </div>
           );

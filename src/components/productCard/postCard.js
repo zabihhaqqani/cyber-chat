@@ -72,7 +72,6 @@ function PostCard({ post, showComments }) {
   return (
     <div>
       <div className="post-card">
-
         <div className="profile-card">
           <img
             onClick={() => {
@@ -80,29 +79,32 @@ function PostCard({ post, showComments }) {
             }}
             src={
               userData?.avatar ??
-              "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686688962/tech-social/blank-profile-picture-973460_1280_d1qnjd.png"
+              "https://fastly.picsum.photos/id/100/150/150.jpg?hmac=uGUauJoHAFEamhXY6HLrXsmhPdapec4KAi8TqFasrQo"
             }
             alt="Avatar"
             className="avatar"
           />{" "}
-
           <div className="name-container">
-            <p onClick={() => {
-              navigate(`/user/${username}`);
-            }}>
+            <p
+              onClick={() => {
+                navigate(`/user/${username}`);
+              }}
+            >
               <strong>{userData?.firstName}</strong>
               <strong>{userData?.lastName}</strong>
               {/* {dataState?.users?.find(user=>user.username===username)} */}
               {/* <strong>{username} </strong> */}
             </p>
-            <p onClick={() => {
-              navigate(`/user/${username}`);
-            }}  className="user-name">@{username}</p>
+            <p
+              onClick={() => {
+                navigate(`/user/${username}`);
+              }}
+              className="user-name"
+            >
+              @{username}
+            </p>
           </div>
-          <p className="date">
-            {moment(createdAt).format("LL")}
-          </p>
-
+          <p className="date">{moment(createdAt).format("LL")}</p>
           {delteablePosts ? (
             <h4 onClick={() => setShowOptions(!showOptions)}>
               {showOptions && (
@@ -120,37 +122,36 @@ function PostCard({ post, showComments }) {
             </h4>
           ) : (
             <div>
-              {showOptions && <button
-                className="follow-btn"
-                onClick={(e) => {
-                  if (userFollowed(dataState?.users, userData?._id)) {
-                    unFollowUserHandler(
-                      userData?._id,
-                      authState?.token,
-                      dataDispatch
-                    );
-                    toast.success(`Unfollowed ${username}`);
-                    setShowOptions(!showOptions)
-                  } else {
-                    followUserHandler(
-                      userData?._id,
-                      authState?.token,
-                      dataDispatch
+              {showOptions && (
+                <button
+                  className="follow-btn"
+                  onClick={(e) => {
+                    if (userFollowed(dataState?.users, userData?._id)) {
+                      unFollowUserHandler(
+                        userData?._id,
+                        authState?.token,
+                        dataDispatch
+                      );
+                      toast.success(`Unfollowed ${username}`);
+                      setShowOptions(!showOptions);
+                    } else {
+                      followUserHandler(
+                        userData?._id,
+                        authState?.token,
+                        dataDispatch
+                      );
+                      toast.success(`following ${username}`);
 
-                    );
-                    toast.success(`following ${username}`);
-
-                    setShowOptions(!showOptions)
-                  }
-                }}
-              >
-                {userFollowed(dataState?.users, userData?._id)
-                  ? "UnFollow"
-                  : "Follow"}
-              </button>}
-
+                      setShowOptions(!showOptions);
+                    }
+                  }}
+                >
+                  {userFollowed(dataState?.users, userData?._id)
+                    ? "UnFollow"
+                    : "Follow"}
+                </button>
+              )}
             </div>
-
           )}
           <div className="dot-icon">
             {!showOptions && (
@@ -171,15 +172,19 @@ function PostCard({ post, showComments }) {
           {content}
         </p>
         <div onClick={() => navigate(`/post/${_id}`)} className="img-container">
-          {mediaURL ? <img className="media-img" src={mediaURL} alt="img" />:''}
-        
+          {mediaURL ? (
+            <img className="media-img" src={mediaURL} alt="img" />
+          ) : (
+            ""
+          )}
         </div>
         <hr />
         <div className="card-icons-container">
           <div>
             <i
-              className={`${likedPosts() ? "fa-solid" : "fa-regular"
-                } fa-heart fa-lg`}
+              className={`${
+                likedPosts() ? "fa-solid" : "fa-regular"
+              } fa-heart fa-lg`}
               onClick={() => {
                 if (!authState?.token) {
                   // toast.error("Please login to proceed!");
@@ -203,7 +208,7 @@ function PostCard({ post, showComments }) {
             <i
               onClick={() => {
                 removeBookmarkHandler(_id, authState?.token, dataDispatch);
-                toast.success('Removed From Bookmark');
+                toast.success("Removed From Bookmark");
               }}
               className="fas fa-bookmark fa-lg"
             ></i>
@@ -211,15 +216,16 @@ function PostCard({ post, showComments }) {
             <i
               onClick={() => {
                 addBookmarkHandler(_id, authState?.token, dataDispatch);
-                  toast.success('Added To Bookmark');
+                toast.success("Added To Bookmark");
               }}
               className="far fa-bookmark fa-lg"
             ></i>
           )}
 
           <i
-            onClick={() => {navigator.clipboard.writeText(window.location.href)
-              toast.success("URL copied!")
+            onClick={() => {
+              navigator.clipboard.writeText(window.location.href);
+              toast.success("URL copied!");
             }}
             className="fas fa-share fa-lg"
           ></i>
