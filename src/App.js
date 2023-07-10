@@ -1,4 +1,4 @@
-import { Route, Routes, useParams } from "react-router-dom";
+import { Navigate, Route, Routes, useParams } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/Home/Home";
 import Explore from "./pages/explore/explore";
@@ -11,6 +11,7 @@ import { IndividualPostPage } from "./components/individualPost/indivialPost";
 import UserProfilePage from "./components/individualProfilePage/userProfilePage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Error } from "./pages/error/error";
 
 function App() {
   return (
@@ -66,6 +67,8 @@ function App() {
             </RequiresAuth>
           }
         />
+        <Route path="/page-not-found" element={<Error/>} />
+        <Route path="*" element={<Navigate to={"/page-not-found"} />} />
       </Routes>
       <ToastContainer
         position="bottom-right"
