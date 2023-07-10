@@ -1,71 +1,56 @@
-# Getting Started with Create React App
+# Cyber Chat
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Social Media application to connect with people you love. 
 
-## Available Scripts
+# Live Preview: [cyber-chat](https://cyber-chat-media.netlify.app/)
 
-In the project directory, you can run:
+![image](https://github.com/zabihhaqqani/cyber-chat/assets/53895282/07b95167-393a-469d-a664-1b272fc4cdcc)
 
-### `npm start`
+## How to install and run locally?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+$ git clone https://github.com/zabihhaqqani/cyber-chat.git
+$ cd cyber-chat
+$ npm install
+$ npm start
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## **Technologies used :**
 
-### `npm test`
+- React JS
+- React Context API + useReducer
+- React Router 
+- Vanilla CSS
+- Mockbee for backend: [MockBee](https://mockbee.netlify.app/docs/api/apps/social-media/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- FontAwesome icons
+- Toastify
 
-### `npm run build`
+## **Features :**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Landing Page
+- Authentication
+  - Sign-up
+  - Login
+  - Logout
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- User Feed
+  - List of your user posts and the people you follow.
+    
+- Explore Feed
+  - List all user posts
+  - Sort posts by Latest/ Trending / Oldest.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- User Suggestions
+  - Follow / Unfollow users
+  - Search Users
 
-### `npm run eject`
+- Like / Unlike a Post
+- Add / Remove bookmark on a post
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Delete your posts
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# cyber-text
+ - Profile Page
+ - Edit bio, website link
+ - Check followers / following list
+ - list of all posts posted by user 
