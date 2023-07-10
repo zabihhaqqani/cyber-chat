@@ -37,7 +37,7 @@ const UserProfileCard = ({ userProfile }) => {
         />
       </div>
       <div className="user-profile-header">
-        <img src={userProfile?.avatar ?? "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686688962/tech-social/blank-profile-picture-973460_1280_d1qnjd.png"} alt="avatar" className="user-avatar" />
+        <img src={userProfile?.avatar ?? "https://fastly.picsum.photos/id/100/150/150.jpg?hmac=uGUauJoHAFEamhXY6HLrXsmhPdapec4KAi8TqFasrQo"} alt="avatar" className="user-avatar" />
         {userLoggedIn ? (
           <button
             style={{ height: "50%" }}

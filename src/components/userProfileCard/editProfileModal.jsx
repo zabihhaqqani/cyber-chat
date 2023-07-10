@@ -9,7 +9,8 @@ const EditProfileModal = ({ data, token, dataDispatch, closeModal, isOpen }) => 
 
   const [editedProfile, setEditedProfile] = useState({
     bio: data?.bio,
-    website: data?.website
+    website: data?.website,
+    avatar:data?.avatar
   });
 
   const handleInputChange = (e) => {
@@ -23,7 +24,7 @@ const EditProfileModal = ({ data, token, dataDispatch, closeModal, isOpen }) => 
         <span onClick={() => closeModal()} className="close">&times;</span>
         <h2>Edit Profile</h2>
         <img
-          src={data?.avatar ?? "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686688962/tech-social/blank-profile-picture-973460_1280_d1qnjd.png"}
+          src={data?.avatar ?? "https://fastly.picsum.photos/id/100/150/150.jpg?hmac=uGUauJoHAFEamhXY6HLrXsmhPdapec4KAi8TqFasrQo"}
           alt="Avatar"
           className="user-avatar"
         />{" "}

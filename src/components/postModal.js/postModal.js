@@ -40,7 +40,7 @@ const PostModal = () => {
             }}
             src={
               userData?.avatar ??
-              "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686688962/tech-social/blank-profile-picture-973460_1280_d1qnjd.png"
+              "https://fastly.picsum.photos/id/100/150/150.jpg?hmac=uGUauJoHAFEamhXY6HLrXsmhPdapec4KAi8TqFasrQo"
             }
             alt="Avatar"
             className="avatar"

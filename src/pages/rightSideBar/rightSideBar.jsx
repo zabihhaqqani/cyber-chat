@@ -54,7 +54,7 @@ function RightSideBar() {
           {searchTerm
             && filteredSearch?.map(({ _id, username,firstName,lastName,avatar }) => (
               <div key={_id} className="individual-user-search">
-                <img onClick={() => navigate(`/user/${username}`)} className="avatar" src={avatar ?? "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686688962/tech-social/blank-profile-picture-973460_1280_d1qnjd.png"} alt="avatar" />
+                <img onClick={() => navigate(`/user/${username}`)} className="avatar" src={avatar ?? "https://fastly.picsum.photos/id/100/150/150.jpg?hmac=uGUauJoHAFEamhXY6HLrXsmhPdapec4KAi8TqFasrQo"} alt="avatar" />
                 <div>
                   <li onClick={() => navigate(`/user/${username}`)}>{firstName} {lastName}</li>
                   <li onClick={() => navigate(`/user/${username}`)}>@{username}</li>
@@ -72,7 +72,7 @@ function RightSideBar() {
           const { _id, username, firstName, lastName, avatar } = user;
           return (
             <div className="individual-user" key={_id}>
-              <img onClick={() => navigate(`/user/${username}`)} className="avatar" src={avatar ?? "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686688962/tech-social/blank-profile-picture-973460_1280_d1qnjd.png"} alt="avatar" />
+              <img onClick={() => navigate(`/user/${username}`)} className="avatar" src={avatar ?? "https://fastly.picsum.photos/id/100/150/150.jpg?hmac=uGUauJoHAFEamhXY6HLrXsmhPdapec4KAi8TqFasrQo"} alt="avatar" />
               <div>
                 <li onClick={() => navigate(`/user/${username}`)}>{firstName} {lastName}</li>
                 <li onClick={() => navigate(`/user/${username}`)}>@{username}</li>
