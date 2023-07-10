@@ -23,7 +23,6 @@ const LikedPosts = () => {
     );
   }, [dataState?.posts]);
 
-  console.log(postsLikedByUser?.length);
   return (
     <div>
       <Navbar />

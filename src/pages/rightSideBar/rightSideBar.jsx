@@ -5,12 +5,14 @@ import followUserHandler from "../../utils/followUserHandler";
 import userFollowed from "../../utils/userFollowed";
 import unFollowUserHandler from "../../utils/unFollowUserHandler";
 import "./rightSideBar.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function RightSideBar() {
   const { sortBy, setSortBy, dataState, dataDispatch } = useDataContext();
   const { authState } = useAuthContext();
   const [searchTerm, setSearchTerm] = useState("");
+
+  const {username} = useParams()
 
   const user = dataState?.users?.find(
     (user) => user?.username === authState?.user?.username
@@ -30,10 +32,14 @@ function RightSideBar() {
     setSearchTerm('')
   }
 
+  useEffect(() => { handleClearClick() }, [username])
   return (
     <div className="item-right">
-      <div>
+      <div className="results-container-main">
         <div>
+          {/* {searchTerm && <span className="clear-icon" onClick={handleClearClick}>
+            &#10006;
+          </span>} */}
           <input
             placeholder="Search User"
             className="search-user"
@@ -41,24 +47,24 @@ function RightSideBar() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          {searchTerm && <span className="clear-icon" onClick={handleClearClick}>
-            &#10006;
-          </span>}
          
         </div>
         <div className="results">
           {searchTerm
-            ? filteredSearch?.map(({ _id, username,firstName,lastName,avatar }) => (
-              <div key={_id} className="individual-user">
+            && filteredSearch?.map(({ _id, username,firstName,lastName,avatar }) => (
+              <div key={_id} className="individual-user-search">
                 <img onClick={() => navigate(`/user/${username}`)} className="avatar" src={avatar ?? "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686688962/tech-social/blank-profile-picture-973460_1280_d1qnjd.png"} alt="avatar" />
                 <div>
-                  <li onClick={() => navigate(`/user/${username}`)}>{firstName ?? "no users found"} {lastName}</li>
+                  <li onClick={() => navigate(`/user/${username}`)}>{firstName} {lastName}</li>
                   <li onClick={() => navigate(`/user/${username}`)}>@{username}</li>
                 </div>
+                
                </div>
               ))
-            : ""}
+          }
+          {filteredSearch?.length > 0 ? "" : <div className="individual-user">No Users Found</div>}
         </div>
+        
         <ul className="suggested-users">
         <h3>Suggested Users</h3>
         {suggestedUsers?.map((user) => {

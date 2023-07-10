@@ -14,6 +14,7 @@ const PostModal = () => {
   const postBtnHandler = async () => {
     try {
       // const response = await media()
+      setPostContent('')
       createPostHandler(authState?.token, dataDispatch, {
         content: postContent,
       });
@@ -21,6 +22,8 @@ const PostModal = () => {
       console.error(error);
     }
   };
+
+
   const userData = dataState?.users?.find(
     (user) => user?.username === authState?.user?.username
   );
@@ -45,6 +48,7 @@ const PostModal = () => {
               onChange={(e) => setPostContent(e.target.value)}
               className="text-area"
               placeholder="What is happening?"
+              value={postContent}
               name=""
               id=""
               cols="40"

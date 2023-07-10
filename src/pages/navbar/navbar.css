@@ -13,6 +13,7 @@
   font-size: x-large;
   margin: 1rem;
   color: var(--primarycolor);
+  padding-left: 1.5rem;
 }
 .search-user {
   padding: 10px 35px;
@@ -21,6 +22,9 @@
   /* border: none; */
   border-radius: 5px;
   font-weight: 800;
+    width: 330px;
+
+  display: flex;
 }
 .search-user:focus {
   outline: none;

@@ -15,7 +15,7 @@ const Login = () => {
 
     const guestUserData = {
       username: "adarshbalika",
-      password: "adarshBalika123",
+      password: "adarshBalika",
     };
 
     const loginHandler = (e) => {
@@ -37,15 +37,16 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div>
+    <div className="main-container">
       <div className="login-container">
         <div className="login-left-bar">
-          
+          <h1 className="logo-login">Cyber <span style={{color:"black"}}>Chat</span></h1>
           <img className="background-login-img" src={bgImg} alt="bg" />
         </div>
         <div className="login-right-bar">
           <form className="login-form-main">
-            <h3 style={{textAlign:"center"}}>Cyber Chat</h3>
+            <div className="inner-form">
+            <h3 style={{textAlign:"center"}}>Login</h3>
             <label htmlFor="email">User name: </label>
             <input
               id="username"
@@ -69,7 +70,7 @@ const Login = () => {
               }
               required
               minLength="8"
-              maxLength="10"
+              maxLength="16"
             />
 
             <span
@@ -94,6 +95,7 @@ const Login = () => {
             >
               Create New Account  ▶
             </button>
+            </div>
           </form>
         </div>
       </div>

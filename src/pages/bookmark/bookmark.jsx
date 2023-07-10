@@ -10,7 +10,7 @@ const BookMarks = () => {
   const { dataState } = useDataContext();
 
   const bookmarkedPosts = (id) =>
-    dataState?.posts?.filter((post) => post._id === id)[0];
+    dataState?.posts?.filter((post) => post?._id === id)[0];
 
     
   return (
@@ -19,14 +19,12 @@ const BookMarks = () => {
       <div className="home-page-container">
         <SideBar />
         <div className="item-home">
-          <div>
-            {bookmarkedPosts?.length > 0 ?<div>{dataState?.bookmarks?.map((post) => {
-              return (
-                <PostCard key={post._id} post={bookmarkedPosts(post._id)} />
-              );
-            })}</div> : <h3>No BookMarks Yet!</h3>}
-            
-          </div>
+          {dataState?.bookmarks?.length !== 0 ? <div>{dataState?.bookmarks?.map((post) => {
+            return (
+              <PostCard key={post?._id} post={bookmarkedPosts(post?._id)} />
+            );
+          })}</div> : <h3>No Bookmarks Yet!</h3>}
+         
         </div>
         <RightSideBar />
       </div>

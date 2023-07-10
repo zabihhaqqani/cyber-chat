@@ -99,7 +99,7 @@ const UserProfileCard = ({ userProfile }) => {
           </p>
         ) : ''}
         
-        <p>Joined {moment(userProfile?.createdAt).format("LL")}</p>
+        <p>Joined {moment(userProfile?.createdAt)?.format("LL")}</p>
       </div>
 
       <div className="user-profile-metrics">

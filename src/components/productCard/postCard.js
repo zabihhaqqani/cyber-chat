@@ -34,7 +34,9 @@ function PostCard({ post, showComments }) {
   const { authState } = useAuthContext();
   const [showOptions, setShowOptions] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+
   const navigate = useNavigate();
+
   const likedPosts = () =>
     likes?.likedBy?.filter(({ _id }) => _id === authState?.user?._id)
       ?.length !== 0;
@@ -42,10 +44,11 @@ function PostCard({ post, showComments }) {
   const delteablePosts = authState?.user?.username === username;
   const bookmarkedPost = dataState?.bookmarks?.find((item) => item._id === _id)
 
-  const editClickHandler = () => {
-    setShowOptions(false);
-    setShowEditModal(true);
-  };
+  // const editClickHandler = () => {
+  //   setShowOptions(false);
+  //   setShowEditModal(true);
+  // };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [postContent, setPostContent] = useState(content);
 
@@ -63,6 +66,7 @@ function PostCard({ post, showComments }) {
   const userData = dataState?.users?.find(
     (user) => user?.username === username
   );
+  
   return (
     <div>
       <div className="post-card">
@@ -81,13 +85,17 @@ function PostCard({ post, showComments }) {
           />{" "}
 
           <div className="name-container">
-            <p>
+            <p onClick={() => {
+              navigate(`/user/${username}`);
+            }}>
               <strong>{userData?.firstName}</strong>
               <strong>{userData?.lastName}</strong>
               {/* {dataState?.users?.find(user=>user.username===username)} */}
               {/* <strong>{username} </strong> */}
             </p>
-            <p className="user-name">@{username}</p>
+            <p onClick={() => {
+              navigate(`/user/${username}`);
+            }}  className="user-name">@{username}</p>
           </div>
           <p className="date">
             {moment(createdAt).format("LL")}

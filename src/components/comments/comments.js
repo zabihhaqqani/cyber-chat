@@ -6,21 +6,21 @@ const Comments = ({ comments }) => {
 
   const { dataState } = useDataContext()
 
-  const user = comments?.find(data => data?.username)
-  const userData = dataState?.users?.filter(data => data?.username === user?.username)
-  console.log();
   return (
     <div>
-      {comments?.length>0 ? <div className="comments-container">
+      {comments?.length > 0 ? <div>
+        <h3 style={{textAlign:"center"}}>Comments</h3>
         {comments?.map((data) => {
 
           const { _id, username, text } = data;
           return (
-            <div key={_id}>
-              {userData?.map(data => (<div key={data?.id}> <img src={data?.avatar} alt="" className='avatar' /></div>))}
-
-              <p>{username}</p>
-              <p>{text}</p>
+            <div className='comments-container' key={_id}>
+              {/* {userData?.map(data => (<div key={data?.id}> <img src={data?.avatar} alt="" className='avatar' /></div>))} */}
+              <div>{dataState?.users?.map(data => data?.username === username ? <img key={data?.id} src={data?.avatar ?? "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686688962/tech-social/blank-profile-picture-973460_1280_d1qnjd.png"} alt="avatar" className='avatar' /> : '')}</div>
+              <div className='comment-text'>
+              <p><strong>{username}</strong></p>
+              <p >{text}</p>
+              </div>
             </div>
           );
         })}

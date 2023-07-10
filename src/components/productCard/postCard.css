@@ -13,7 +13,7 @@
   /* object-fit: cover; */
 }
 .post-card{
-    /* width: 50vw; */
+ 
     width: 500px;
     display: flex;
     flex-direction: column;
@@ -76,22 +76,30 @@
     color: black;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 0.5rem;
+    position: relative;
+    transition: 1s;
+    /* z-index: 999; */
+    top: 0;
+    border: 0.5px solid;
+    border-radius: 5px;
 
 }
 
-.fa-ellipsis{
-    
+.fa-ellipsis, .fas, .far ,.fa-heart{
+    cursor: pointer;
 }
 
 .dot-icon{
-    display: flex;
-    align-self: right;
+    /* display: flex; */
+    /* align-self: right; */
 }
 .options-container p:hover{
     cursor: pointer;
 }
 
-
+.name-container p {
+    cursor: pointer;
+}
 
 .post-card-content:hover{
     cursor: pointer;
