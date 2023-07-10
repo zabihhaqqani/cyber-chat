@@ -1,6 +1,5 @@
 import React from "react";
 import { useDataContext } from "../../context/dataContext";
-import { sortedPosts } from "../../utils/sortedPosts";
 import PostCard from "../../components/productCard/postCard";
 import Navbar from "../navbar/navbar";
 import SideBar from "../sidebar/sidebar";

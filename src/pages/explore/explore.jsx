@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "../navbar/navbar";
 import SideBar from "../sidebar/sidebar";
 import RightSideBar from "../rightSideBar/rightSideBar";
@@ -7,7 +7,7 @@ import PostCard from "../../components/productCard/postCard";
 import { sortedPosts } from "../../utils/sortedPosts";
 
 const Explore = () => {
-  const { dataState, sortBy, setSortyBy } = useDataContext();
+  const { dataState, sortBy } = useDataContext();
 
   const filteredPosts = sortedPosts(dataState?.posts, sortBy);
     

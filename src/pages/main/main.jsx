@@ -1,7 +1,6 @@
 import React from "react";
 import { useDataContext } from "../../context/dataContext";
 import PostCard from "../../components/productCard/postCard";
-import { createPostHandler } from "../../utils/createPostHandler";
 import { useAuthContext } from "../../context/authContext";
 import { sortedPosts } from "../../utils/sortedPosts";
 import PostModal from "../../components/postModal.js/postModal";
@@ -9,7 +8,7 @@ import "./main.css"
 import { Loader } from "../../utils/loader";
 
 function MainPage() {
-  const { dataState, dataDispatch, sortBy, setSortBy, showLoader } = useDataContext();
+  const { dataState, sortBy, setSortBy, showLoader } = useDataContext();
   const {authState} = useAuthContext()
 
   const userLoggedIn = dataState?.users?.find(user=>user.username === authState?.user?.username)

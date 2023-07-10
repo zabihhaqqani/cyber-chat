@@ -9,7 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function RightSideBar() {
-  const { sortBy, setSortBy, dataState, dataDispatch } = useDataContext();
+  const {  dataState, dataDispatch } = useDataContext();
   const { authState } = useAuthContext();
   const [searchTerm, setSearchTerm] = useState("");
 
