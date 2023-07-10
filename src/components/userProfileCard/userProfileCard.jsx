@@ -94,15 +94,17 @@ const UserProfileCard = ({ userProfile }) => {
           </p>
         ):''}
         {userProfile?.website ? (
-          <p>
-            <a
-              href={userProfile?.website}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {userProfile?.website}
-            </a>
-          </p>
+          <a
+            style={{
+              wordBreak: "break-all",
+              color: "var(--primary-color)",
+            }}
+            href={userProfile?.website}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {userProfile?.website}
+          </a>
         ) : ''}
         
         <p>Joined {moment(userProfile?.createdAt)?.format("LL")}</p>
