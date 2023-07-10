@@ -15,7 +15,7 @@ const Login = () => {
     });
 
     const guestUserData = {
-      username: "adarshbalika",
+      username: "guestUser",
       password: "adarshBalika",
     };
 
