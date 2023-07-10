@@ -6,6 +6,7 @@ import userFollowed from "../../utils/userFollowed";
 import unFollowUserHandler from "../../utils/unFollowUserHandler";
 import "./rightSideBar.css";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function RightSideBar() {
   const { sortBy, setSortBy, dataState, dataDispatch } = useDataContext();
@@ -81,12 +82,16 @@ function RightSideBar() {
                   if (authState?.token) {
                     if (userFollowed(dataState?.users, _id)) {
                       unFollowUserHandler(_id, authState?.token, dataDispatch);
+                      toast.success(`Unfollowed ${username}`);
+
                     } else {
                       followUserHandler(_id, authState?.token, dataDispatch);
+                      toast.success(`Following ${username}`);
+
                     }
                   } else {
-                    // toast.error("Please login to follow");
-                    // navigate("/login");
+                    toast.error("Please login to follow");
+                    navigate("/login");
                   }
                 }
                 }

@@ -5,24 +5,26 @@ import "./postModal.css";
 import { createPostHandler } from "../../utils/createPostHandler";
 import { useDataContext } from "../../context/dataContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const PostModal = () => {
   const { authState } = useAuthContext();
   const { dataDispatch, dataState } = useDataContext();
   const [postContent, setPostContent] = useState("");
   const navigate = useNavigate();
+
   const postBtnHandler = async () => {
     try {
       // const response = await media()
-      setPostContent('')
+      setPostContent("");
       createPostHandler(authState?.token, dataDispatch, {
         content: postContent,
       });
+      toast.success('New Post added!');
     } catch (error) {
       console.error(error);
     }
   };
-
 
   const userData = dataState?.users?.find(
     (user) => user?.username === authState?.user?.username

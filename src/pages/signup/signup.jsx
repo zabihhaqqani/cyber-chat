@@ -85,7 +85,9 @@ export function SignUp() {
               setUserDetails((data) => ({ ...data, email: e.target.value }))
             }
           />
+          
           <label htmlFor="password">Password:</label>
+          <div className="password-container">
           <input
             type={showPassword ? "text" : "password"}
             id="password"
@@ -98,13 +100,20 @@ export function SignUp() {
               setUserDetails((data) => ({ ...data, password: e.target.value }))
             }
           />
-          <span
-            className="show-hide-btn"
-            onClick={() => setShowPassword((showPassword) => !showPassword)}
-          >
-            {showPassword ? "hide" : "show"}
-          </span>
+            <span
+              onClick={() =>
+                setShowPassword((showPassword) => !showPassword)
+              }
+            >
+              {!showPassword ? (
+                <i className="fa-regular fa-eye-slash"></i>
+              ) : (
+                  <i className="fa-regular fa-eye"></i>
+              )}
+            </span>
+          </div>
           <label htmlFor="confirm-password">Confirm Password:</label>
+          <div className="password-container">
           <input
             type={showPassword2 ? "text" : "password"}
             id="confirm-password"
@@ -120,12 +129,18 @@ export function SignUp() {
               }))
             }
           />
-          <span
-            className="show-hide-btn"
-            onClick={() => setShowPassword2(!showPassword2)}
-          >
-            {showPassword2 ? "hide" : "show"}
-          </span>
+            <span
+              onClick={() =>
+                setShowPassword2((showPassword2) => !showPassword2)
+              }
+            >
+              {!showPassword2 ? (
+                <i className="fa-regular fa-eye-slash"></i>
+              ) : (
+                  <i className="fa-regular fa-eye"></i>
+              )}
+            </span>
+          </div>
           <button type="submit" className="login-btn">
             Signup
           </button>

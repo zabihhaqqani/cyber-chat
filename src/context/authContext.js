@@ -8,12 +8,11 @@ import React, {
 } from "react";
 import authReducer from "../reducer/authReducer";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-
-
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -35,10 +34,12 @@ const AuthProvider = ({ children }) => {
         );
         authDispatch({ type: "SET_USER", payload: data?.foundUser });
         authDispatch({ type: "SET_TOKEN", payload: data?.encodedToken });
+        toast.success("Log In Successful!");
 
         navigate(location?.state?.from?.pathname || "/");
       }
     } catch (error) {
+      toast.error(`${error.response.data.errors}`);
       console.error(error);
     }
   };
@@ -49,7 +50,7 @@ const AuthProvider = ({ children }) => {
       if (status === 201) {
         localStorage.setItem(
           "userData",
-          JSON.stringify({ user: data?.createdUser,token: data?.encodedToken,})
+          JSON.stringify({ user: data?.createdUser, token: data?.encodedToken })
         );
         authDispatch({
           type: "SET_USER",
@@ -62,25 +63,31 @@ const AuthProvider = ({ children }) => {
         navigate(location?.state?.from?.pathname || "/");
       }
     } catch (e) {
+      toast.error(`${e.response.data.errors}`);
+
       console.error(e);
     }
   };
+
   const userLogout = () => {
     localStorage.removeItem("userData");
     authDispatch({ type: "SET_USER", payload: {} });
     authDispatch({ type: "SET_TOKEN", payload: "" });
   };
+
   useEffect(() => {
     if (localStorageData?.user?.username === "adarshbalika") {
       authDispatch({ type: "SET_USER", payload: localStorageData?.user });
       authDispatch({ type: "SET_TOKEN", payload: localStorageData?.token });
       // localStorage.removeItem("userData")
-    }else{
-      userLogout()
+    } else {
+      userLogout();
     }
   }, []);
 
-console.log();
+  
+
+  console.log();
 
   return (
     <AuthContext.Provider

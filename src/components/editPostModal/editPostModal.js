@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./editPostModal.css"; // You can create the CSS file to style the modal
 import { editPostHandler } from "../../utils/editPostHandler";
+import { toast } from "react-toastify";
 
 const EditPostModal = ({
   isOpen,
@@ -26,6 +27,7 @@ const EditPostModal = ({
       editPostHandler(id, token, dataDispatch, {
         content: editedContent,
       });
+      toast.success("Post Edited!");
     } catch (error) {
       console.error(error);
     }

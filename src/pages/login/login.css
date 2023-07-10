@@ -52,6 +52,7 @@
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid grey;
+  width: 100%;
 }
 
 .login-form-main label {
@@ -93,9 +94,27 @@
 
 .inner-form input{
   margin: 0.5rem 0rem;
+  
 }
 
 .inner-form label{
   text-align: left;
   margin: 0.5rem 0rem;
+}
+
+.password-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: flex-end;
+  justify-content: center;
+
+}
+.password-container span {
+  position: absolute;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  padding-right: 0.5rem;
+  cursor: pointer;
 }

@@ -3,6 +3,7 @@ import "./login.css"
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/authContext";
 import bgImg from "./loginBg.svg"
+import { toast } from "react-toastify";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -21,9 +22,8 @@ const Login = () => {
     const loginHandler = (e) => {
       e.preventDefault();
       if (!userData.username.trim() || !userData.password.trim()) {
-        // toast.warning("Enter valid Credentials!");
+        toast.warning("Enter valid Credentials!");
       } else {
-        // toast.success("Log In Successful!")
         userLogin(userData);
       }
     };
@@ -32,7 +32,7 @@ const Login = () => {
       e.preventDefault();
       setUserData(guestUserData);
       userLogin(guestUserData);
-    //   toast.success("Log In Successful!");
+   
     };
     const [showPassword, setShowPassword] = useState(false);
 
@@ -59,7 +59,9 @@ const Login = () => {
               required
             />
 
+
             <label htmlFor="password">Password: </label>
+              <div className="password-container">
             <input
               id="password"
               value={userData.password}
@@ -72,13 +74,19 @@ const Login = () => {
               minLength="8"
               maxLength="16"
             />
-
-            <span
-              className="show-hide-btn"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? "hide" : "show"}
-            </span>
+              <span
+                onClick={() =>
+                  setShowPassword((showPassword) => !showPassword)
+                }
+              >
+                {!showPassword ? (
+                    <i className="fa-regular fa-eye-slash"></i>
+                ) : (
+                      <i className="fa-regular fa-eye"></i>
+                )}
+              </span>
+              </div>
+           
             <button
               style={{ backgroundColor: "lightBlue" }}
               className="login-btn"

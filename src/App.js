@@ -9,6 +9,8 @@ import RequiresAuth from "./Auth/requireAuth";
 import { SignUp } from "./pages/signup/signup";
 import { IndividualPostPage } from "./components/individualPost/indivialPost";
 import UserProfilePage from "./components/individualProfilePage/userProfilePage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -65,6 +67,18 @@ function App() {
           }
         />
       </Routes>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 }

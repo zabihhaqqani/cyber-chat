@@ -16,6 +16,8 @@ import unFollowUserHandler from "../../utils/unFollowUserHandler";
 import followUserHandler from "../../utils/followUserHandler";
 import { useNavigate } from "react-router-dom";
 import Comments from "../comments/comments";
+import { toast } from "react-toastify";
+
 
 function PostCard({ post, showComments }) {
   const { dataDispatch, dataState } = useDataContext();
@@ -127,6 +129,7 @@ function PostCard({ post, showComments }) {
                       authState?.token,
                       dataDispatch
                     );
+                    toast.success(`Unfollowed ${username}`);
                     setShowOptions(!showOptions)
                   } else {
                     followUserHandler(
@@ -135,6 +138,8 @@ function PostCard({ post, showComments }) {
                       dataDispatch
 
                     );
+                    toast.success(`following ${username}`);
+
                     setShowOptions(!showOptions)
                   }
                 }}
@@ -198,6 +203,7 @@ function PostCard({ post, showComments }) {
             <i
               onClick={() => {
                 removeBookmarkHandler(_id, authState?.token, dataDispatch);
+                toast.success('Removed From Bookmark');
               }}
               className="fas fa-bookmark fa-lg"
             ></i>
@@ -205,13 +211,16 @@ function PostCard({ post, showComments }) {
             <i
               onClick={() => {
                 addBookmarkHandler(_id, authState?.token, dataDispatch);
+                  toast.success('Added To Bookmark');
               }}
               className="far fa-bookmark fa-lg"
             ></i>
           )}
 
           <i
-            onClick={() => navigator.clipboard.writeText(window.location.href)}
+            onClick={() => {navigator.clipboard.writeText(window.location.href)
+              toast.success("URL copied!")
+            }}
             className="fas fa-share fa-lg"
           ></i>
         </div>

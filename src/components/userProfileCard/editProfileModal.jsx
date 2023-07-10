@@ -3,6 +3,7 @@ import { useAuthContext } from "../../context/authContext";
 import { editUserHandler } from "../../utils/editUserHandler";
 import girl from "../productCard/girl-2.png";
 import "./editProfileModal.css"
+import { toast } from "react-toastify";
 
 const EditProfileModal = ({ data, token, dataDispatch, closeModal, isOpen }) => {
 
@@ -15,8 +16,6 @@ const EditProfileModal = ({ data, token, dataDispatch, closeModal, isOpen }) => 
     const { name, value } = e.target;
     setEditedProfile((prevData) => ({ ...prevData, [name]: value }));
   };
-
-
 
   return (
     <div className={`modal ${closeModal ? "open" : ""}`}>
@@ -37,7 +36,7 @@ const EditProfileModal = ({ data, token, dataDispatch, closeModal, isOpen }) => 
           name="bio"
             id="bio"
         />
-          <label htmlFor="bio">Website: </label>
+          <label htmlFor="website">Website: </label>
 
         <input
           onChange={handleInputChange}
@@ -51,6 +50,8 @@ const EditProfileModal = ({ data, token, dataDispatch, closeModal, isOpen }) => 
           onClick={() => {
             editUserHandler(token, dataDispatch, editedProfile)
             closeModal()
+            toast.success("Profile edited!");
+
           }}
           className="save-button"
 

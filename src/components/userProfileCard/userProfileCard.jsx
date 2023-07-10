@@ -8,6 +8,8 @@ import followUserHandler from "../../utils/followUserHandler";
 import { useDataContext } from "../../context/dataContext";
 import EditProfileModal from "./editProfileModal";
 import moment from "moment";
+import { toast } from "react-toastify";
+
 
 const UserProfileCard = ({ userProfile }) => {
   const { dataState, dataDispatch } = useDataContext();
@@ -55,12 +57,16 @@ const UserProfileCard = ({ userProfile }) => {
                   authState?.token,
                   dataDispatch
                 );
+                toast.success(`Unfollowed ${userProfile?.username}`)
+                  
               } else {
                 followUserHandler(
                   userProfile?._id,
                   authState?.token,
                   dataDispatch
                 );
+                toast.success(`following ${userProfile?.username}`);
+
               }
             }}
           >
