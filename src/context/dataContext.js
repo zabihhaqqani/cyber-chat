@@ -15,18 +15,19 @@ const DataProvider = ({ children }) => {
   const { authState } = useAuthContext();
   const initialState = {
     users: [],
-    usersLoading: false,
     posts: [],
-    postLoading: false,
     bookmarks: [],
   };
   const [dataState, dataDispatch] = useReducer(dataReducer, initialState);
+  const [showLoader, setShowLoader] = useState(true);
 
   const getUsers = async () => {
     try {
+      // setShowLoader(true);
       const { status, data } = await axios.get("/api/users");
       if (status === 200) {
         dataDispatch({ type: "SET_USERS", payload: data?.users });
+         setShowLoader(false);
       }
     } catch (error) {
       console.error(error);
@@ -37,6 +38,8 @@ const DataProvider = ({ children }) => {
       const { status, data } = await axios.get("/api/posts");
       if (status === 200) {
         dataDispatch({ type: "SET_USER_POSTS", payload: data?.posts });
+         setShowLoader(false);
+
       }
     } catch (error) {
       console.error(error);
@@ -71,7 +74,7 @@ const DataProvider = ({ children }) => {
 
   return (
     <DataContext.Provider
-      value={{ dataState, dataDispatch, setSortBy, sortBy }}
+      value={{ dataState, dataDispatch, setSortBy, sortBy, showLoader }}
     >
       {children}
     </DataContext.Provider>
